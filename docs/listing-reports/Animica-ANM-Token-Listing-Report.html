@@ -4,7 +4,10 @@
 <meta charset="utf-8" />
 <title>Upbit Exchange - Animica (ANM) Token Listing Report</title>
 <style>
-  @page { size: A4; margin: 0; }
+  @page {
+    size: A4;
+    margin: 16mm 14mm 16mm 14mm;
+  }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
@@ -14,36 +17,24 @@
     background: #fff;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    font-size: 10.5px;
+    line-height: 1.45;
   }
-  .page {
-    width: 210mm;
-    height: 297mm;
-    margin: 0;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-    page-break-after: always;
-    page-break-inside: avoid;
+  .doc {
+    max-width: 182mm;
+    margin: 0 auto;
   }
-  .page:last-child { page-break-after: auto; }
-  .sheet {
-    position: absolute;
-    inset: 14mm 14mm 12mm 14mm;
-    display: flex;
-    flex-direction: column;
-  }
-  .header {
+
+  /* Cover header — first page only */
+  .cover-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #0057ff;
     margin-bottom: 10px;
-    flex-shrink: 0;
   }
   .brand { display: flex; align-items: center; gap: 10px; }
   .logo svg { width: 72px; height: 20px; display: block; }
-  .org-name { font-weight: 700; font-size: 11px; color: #2c3030; line-height: 1.2; }
+  .org-name { font-weight: 700; font-size: 11px; line-height: 1.2; }
   .org-sub { font-size: 9.5px; color: #666; margin-top: 2px; }
   .meta {
     text-align: right;
@@ -53,9 +44,8 @@
   }
   .meta strong {
     display: block;
-    font-size: 9.5px;
-    color: #666;
     font-weight: 700;
+    color: #666;
   }
   .title-bar {
     background: #0057ff;
@@ -66,38 +56,19 @@
     text-align: center;
     padding: 8px 10px;
     border-radius: 3px;
-    margin-bottom: 12px;
-    flex-shrink: 0;
+    margin: 0 0 12px;
   }
-  .section-bar {
-    background: #0057ff;
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-    padding: 7px 11px;
-    margin: 0 0 10px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
-  .content {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-  }
-  .content.grow > .fill { flex: 1 1 auto; }
   .info-grid {
     display: flex;
     gap: 12px;
-    margin-bottom: 12px;
-    flex-shrink: 0;
+    margin-bottom: 14px;
   }
   .card {
     flex: 1;
     background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 4px;
-    padding: 12px 13px 13px;
+    padding: 12px 13px;
   }
   .card h3 {
     margin: 0 0 7px;
@@ -126,18 +97,55 @@
     padding: 3px 7px;
     border-radius: 3px;
   }
-  p {
-    margin: 0 0 8px;
-    font-size: 10.5px;
-    line-height: 1.48;
+
+  .section-bar {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 7px 11px;
+    margin: 16px 0 10px;
+    border-radius: 3px;
+    page-break-after: avoid;
   }
+  .section-bar:first-of-type { margin-top: 0; }
+
+  p { margin: 0 0 8px; }
   p strong { font-weight: 700; }
+
+  .subhead {
+    color: #0057ff;
+    font-size: 11.5px;
+    font-weight: 700;
+    margin: 12px 0 7px;
+    page-break-after: avoid;
+  }
+
+  .bullet {
+    position: relative;
+    padding-left: 12px;
+    font-size: 10px;
+    line-height: 1.45;
+    margin: 0 0 4px;
+  }
+  .bullet::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    background: #2c3e50;
+    border-radius: 50%;
+  }
+
   .callout {
     border-radius: 4px;
     padding: 10px 11px;
-    margin: 0 0 10px;
+    margin: 10px 0;
     font-size: 10.5px;
     line-height: 1.42;
+    page-break-inside: avoid;
   }
   .callout.green {
     background: #e8f5e9;
@@ -156,35 +164,14 @@
     font-size: 11px;
     font-weight: 700;
   }
-  .subhead {
-    color: #0057ff;
-    font-size: 11.5px;
-    font-weight: 700;
-    margin: 4px 0 7px;
-  }
-  .bullet {
-    position: relative;
-    padding-left: 12px;
-    font-size: 10px;
-    line-height: 1.45;
-    margin: 0 0 4px;
-  }
-  .bullet::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 5px;
-    width: 4px;
-    height: 4px;
-    background: #2c3e50;
-    border-radius: 50%;
-  }
+
   .spec-box {
     background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 4px;
     padding: 11px 12px;
     margin: 0 0 10px;
+    page-break-inside: avoid;
   }
   .spec-box h4 {
     margin: 0 0 7px;
@@ -192,12 +179,16 @@
     color: #0057ff;
     font-weight: 700;
   }
+
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 9px;
     margin: 0 0 10px;
+    page-break-inside: auto;
   }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
   th {
     background: #0057ff;
     color: #fff;
@@ -215,18 +206,21 @@
   td.status-bad { background: #ffebee; color: #c62828; font-weight: 700; }
   td.status-warn { background: #fff3e0; color: #ef6c00; }
   td.status-pending { background: #ffebee; color: #c62828; font-weight: 700; }
+
   .cond-block {
     margin: 0 0 8px;
     padding: 9px 11px;
     background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 4px;
+    page-break-inside: avoid;
   }
   .cond-block h4 {
     margin: 0 0 5px;
     font-size: 10.5px;
     font-weight: 700;
   }
+
   .olist {
     margin: 0;
     padding-left: 16px;
@@ -234,559 +228,362 @@
     line-height: 1.48;
   }
   .olist li { margin: 0 0 4px; }
-  .page-footer {
-    flex-shrink: 0;
-    margin-top: 8px;
-    padding-top: 7px;
-    border-top: 1px solid #d8dee6;
-    display: flex;
-    justify-content: space-between;
-    font-size: 8.5px;
-    color: #666;
-  }
+
   .closing-footer {
     text-align: center;
     font-size: 9px;
     color: #666;
     line-height: 1.45;
-    margin-top: auto;
+    margin-top: 18px;
     padding-top: 10px;
+    page-break-inside: avoid;
   }
   .closing-footer .rule {
     height: 1.5px;
     background: #0057ff;
     margin-bottom: 8px;
   }
-  .stack { display: flex; flex-direction: column; gap: 0; }
-  .two-col {
-    display: flex;
-    gap: 12px;
+
+  /* Screen preview only */
+  @media screen {
+    body { background: #e8eef5; padding: 24px 0; }
+    .doc {
+      background: #fff;
+      padding: 16mm 14mm;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
   }
-  .two-col > * { flex: 1; }
 </style>
 </head>
 <body>
+<div class="doc">
 
-<!-- PAGE 1 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Dunamu Inc. | Seoul, Republic of Korea</div>
-        </div>
+  <!-- Cover / first-page header only -->
+  <div class="cover-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
+          <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
+        </svg>
       </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Classification: Internal Use Only<br />
-        Generated: August 7, 2026<br />
-        Page 1 of 6
+      <div>
+        <div class="org-name">Korea Digital Asset Exchange</div>
+        <div class="org-sub">Dunamu Inc. | Seoul, Republic of Korea</div>
       </div>
     </div>
-
-    <div class="title-bar">PRELIMINARY LISTING REPORT</div>
-
-    <div class="content grow">
-      <div class="info-grid">
-        <div class="card">
-          <h3>Project Information</h3>
-          <div class="rule"></div>
-          <div class="row"><span class="k">Reference ID:</span> <span class="accent">C2363EEF</span></div>
-          <div class="row"><span class="k">Project Name:</span> Animica</div>
-          <div class="row"><span class="k">Token Symbol:</span> ANM</div>
-          <div class="row"><span class="k">Classification:</span> Layer-1 / Post-Quantum Utility</div>
-          <div class="row">Blockchain – Verifiable Compute</div>
-          <div class="row"><span class="k">Blockchain:</span> Animica (Native L1)</div>
-          <div class="row"><span class="k">Website:</span> animica.org</div>
-          <div class="row"><span class="k">Network Status:</span> Live Mainnet</div>
-        </div>
-        <div class="card">
-          <h3>Listing Classification</h3>
-          <div class="rule"></div>
-          <div class="row"><span class="k">Token Type:</span> Native L1 Utility Coin</div>
-          <div class="row" style="margin-top:3px;"><span class="k">Listing Type:</span></div>
-          <div class="row" style="margin:4px 0 6px;"><span class="badge">ELIGIBLE FOR PRELIMINARY REVIEW</span></div>
-          <div class="row"><span class="k">Report Date:</span> August 7, 2026</div>
-          <div class="row"><span class="k">Assessment Status:</span> <span class="accent">Preliminary Review</span></div>
-          <div class="row"><span class="k">Prepared for:</span> Upbit Listings Committee</div>
-          <div class="row"><span class="k">Document ID:</span> UPB-C2363EEF</div>
-        </div>
-      </div>
-
-      <div class="section-bar">1. EXECUTIVE SUMMARY</div>
-      <div class="fill stack">
-        <p><strong>Animica</strong> is a live post-quantum Layer-1 blockchain focused on verifiable compute. Based on publicly available information, Animica demonstrates an active blockchain ecosystem with a wallet, CLI, tutorials, explorer, and exchange interface. Public documentation covers wallet creation, node operation, mining, smart contracts, and tutorials — indicating more than a simple token launch.</p>
-        <p>This exceeds what many early-stage projects provide and reduces operational risk during exchange integration. However, several areas would likely require significant strengthening before meeting Tier-1 centralized exchange listing standards, particularly market liquidity evidence, security transparency, regulatory readiness, and comprehensive tokenomics disclosure.</p>
-
-        <div class="callout green">
-          <h4>✅ Positive Finding: Functional Ecosystem</h4>
-          Animica appears to provide a native blockchain, wallet CLI, explorer, smart contract support, mining, tutorials, developer tooling, and a trading interface. This public product surface is broader than many early-stage crypto projects and supports a more credible preliminary technical review.
-        </div>
-        <div class="callout green">
-          <h4>✅ Positive Finding: Developer Experience</h4>
-          Visible tooling includes command-line utilities, wallet management, node deployment, contract deployment, and mining commands. Tier-1 exchanges generally favor projects with mature developer ecosystems and operational documentation.
-        </div>
-        <div class="callout amber" style="margin-bottom:0;">
-          <h4>⚠️ Areas Requiring Strengthening</h4>
-          Public evidence of organic trading volume, independent audits, legal opinions, KYC/AML posture, and comprehensive tokenomics disclosures remains insufficient for Tier-1 listing standards based on reviewed sources. These items should be addressed before conditional approval review.
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 1 of 6</span>
+    <div class="meta">
+      <strong>CONFIDENTIAL DOCUMENT</strong>
+      Classification: Internal Use Only<br />
+      Generated: August 7, 2026<br />
+      Document ID: UPB-C2363EEF
     </div>
   </div>
-</section>
 
-<!-- PAGE 2 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Preliminary Listing Report | Reference C2363EEF</div>
-        </div>
-      </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Generated: August 7, 2026<br />
-        Page 2 of 6
-      </div>
+  <div class="title-bar">PRELIMINARY LISTING REPORT</div>
+
+  <div class="info-grid">
+    <div class="card">
+      <h3>Project Information</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Reference ID:</span> <span class="accent">C2363EEF</span></div>
+      <div class="row"><span class="k">Project Name:</span> Animica</div>
+      <div class="row"><span class="k">Token Symbol:</span> ANM</div>
+      <div class="row"><span class="k">Classification:</span> Layer-1 / Post-Quantum Utility</div>
+      <div class="row">Blockchain – Verifiable Compute</div>
+      <div class="row"><span class="k">Blockchain:</span> Animica (Native L1)</div>
+      <div class="row"><span class="k">Website:</span> animica.org</div>
+      <div class="row"><span class="k">Network Status:</span> Live Mainnet</div>
     </div>
-
-    <div class="content grow">
-      <div class="section-bar">2. PROJECT &amp; PRODUCT OVERVIEW</div>
-      <p><strong>Animica</strong> aims to operate a post-quantum L1 with useful-work consensus, deterministic smart contracts, and an operational product stack spanning wallets, explorer, mining, developer tooling, and a trading interface. The project’s public posture emphasizes a functioning blockchain ecosystem rather than a whitepaper-only launch.</p>
-
-      <div class="subhead">2.1 Protocol Functions</div>
-      <div class="bullet"><strong>Native L1 operations:</strong> Live mainnet with public RPC, explorer, and chain-verifiable state</div>
-      <div class="bullet"><strong>Wallet &amp; CLI tooling:</strong> Wallet creation, key management, transfers, and command-line operations</div>
-      <div class="bullet"><strong>Smart contracts:</strong> Contract support with documented deployment tooling</div>
-      <div class="bullet"><strong>Mining &amp; useful work:</strong> Mining infrastructure and related operational commands</div>
-      <div class="bullet"><strong>Developer experience:</strong> Node deployment, tutorials, and tooling beyond a minimal token launch</div>
-      <div class="bullet"><strong>Trading interface:</strong> Public exchange portal for ANM market access (market metrics incomplete)</div>
-
-      <div class="subhead">2.2 Vision &amp; Impact</div>
-      <p>Visible infrastructure — trading portal, wallet support, blockchain explorer, academy/tutorials, and node software — reduces operational risk during exchange integration. These components indicate that Animica has progressed into a functioning public product stack. Tier-1 exchanges generally favor projects with mature developer ecosystems and demonstrable infrastructure readiness.</p>
-
-      <div class="callout green">
-        <h4>✅ Assessment: Strong Developer Experience</h4>
-        Command-line tools, wallet management, node deployment, contract deployment, and mining commands indicate a comparatively mature public developer surface and support a more efficient technical diligence process.
-      </div>
-
-      <div class="section-bar" style="margin-top:4px;">3. TOKEN DESIGN &amp; UTILITY</div>
-      <div class="spec-box">
-        <h4>Token Specifications</h4>
-        <div class="bullet"><strong>Token Name:</strong> ANM (native utility coin)</div>
-        <div class="bullet"><strong>Blockchain:</strong> Animica (Native L1)</div>
-        <div class="bullet"><strong>Network Status:</strong> Live mainnet</div>
-        <div class="bullet"><strong>Total Supply:</strong> To be disclosed comprehensively</div>
-        <div class="bullet"><strong>Circulating Supply:</strong> To be disclosed comprehensively</div>
-        <div class="bullet"><strong>Website:</strong> animica.org</div>
-      </div>
-
-      <div class="subhead">3.1 Use Cases</div>
-      <div class="bullet"><strong>Network utility:</strong> Native coin for transactions and chain operations</div>
-      <div class="bullet"><strong>Mining rewards:</strong> Incentives for mining / useful-work participation</div>
-      <div class="bullet"><strong>Developer &amp; ecosystem payments:</strong> Settlement within Animica tooling and services</div>
-      <div class="bullet"><strong>Trading:</strong> Available via public trading interface; organic volume evidence remains limited</div>
-
-      <div class="callout amber" style="margin-bottom:0;">
-        <h4>⚠️ Token Metrics Disclosure Gap</h4>
-        Top exchanges typically examine circulating supply, emissions schedule, treasury holdings, vesting, unlock schedules, concentration risk, and token distribution. These details were not readily apparent from the reviewed public information and should be packaged into a canonical disclosure before conditional approval.
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 2 of 6</span>
+    <div class="card">
+      <h3>Listing Classification</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Token Type:</span> Native L1 Utility Coin</div>
+      <div class="row" style="margin-top:3px;"><span class="k">Listing Type:</span></div>
+      <div class="row" style="margin:4px 0 6px;"><span class="badge">ELIGIBLE FOR PRELIMINARY REVIEW</span></div>
+      <div class="row"><span class="k">Report Date:</span> August 7, 2026</div>
+      <div class="row"><span class="k">Assessment Status:</span> <span class="accent">Preliminary Review</span></div>
+      <div class="row"><span class="k">Prepared for:</span> Upbit Listings Committee</div>
     </div>
   </div>
-</section>
 
-<!-- PAGE 3 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Preliminary Listing Report | Reference C2363EEF</div>
-        </div>
-      </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Generated: August 7, 2026<br />
-        Page 3 of 6
-      </div>
-    </div>
+  <div class="section-bar">1. EXECUTIVE SUMMARY</div>
+  <p><strong>Animica</strong> is a live post-quantum Layer-1 blockchain focused on verifiable compute. Based on publicly available information, Animica demonstrates an active blockchain ecosystem with a wallet, CLI, tutorials, explorer, and exchange interface. Public documentation covers wallet creation, node operation, mining, smart contracts, and tutorials — indicating more than a simple token launch.</p>
+  <p>This exceeds what many early-stage projects provide and reduces operational risk during exchange integration. However, several areas would likely require significant strengthening before meeting Tier-1 centralized exchange listing standards, particularly market liquidity evidence, security transparency, regulatory readiness, and comprehensive tokenomics disclosure.</p>
 
-    <div class="content grow">
-      <div class="section-bar">4. DOCUMENTATION &amp; COMPLIANCE STATUS</div>
-      <p>The matrix below summarizes publicly reviewed documentation and compliance posture relevant to preliminary listing diligence.</p>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:34%">Document / Item</th>
-            <th style="width:20%">Status</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Public documentation / tutorials</td>
-            <td class="status-ok">Available</td>
-            <td>Wallet, node, mining, contracts, and tutorials present</td>
-          </tr>
-          <tr>
-            <td>Working blockchain / explorer</td>
-            <td class="status-ok">Available</td>
-            <td>Live mainnet with public explorer</td>
-          </tr>
-          <tr>
-            <td>Wallet &amp; developer tooling</td>
-            <td class="status-ok">Available</td>
-            <td>CLI, wallet support, node software</td>
-          </tr>
-          <tr>
-            <td>Audit reports</td>
-            <td class="status-pending">Not evident</td>
-            <td>Independent public audits not prominently found</td>
-          </tr>
-          <tr>
-            <td>Legal opinion / token classification</td>
-            <td class="status-pending">Unknown</td>
-            <td>Not clearly demonstrated in reviewed sources</td>
-          </tr>
-          <tr>
-            <td>Corporate structure &amp; KYC/KYB</td>
-            <td class="status-pending">Pending</td>
-            <td>To be submitted under NDA for listing processing</td>
-          </tr>
-          <tr>
-            <td>Tokenomics &amp; vesting schedule</td>
-            <td class="status-pending">Partial / Incomplete</td>
-            <td>Required for conditional approval</td>
-          </tr>
-          <tr>
-            <td>Exchange API / uptime metrics</td>
-            <td class="status-warn">Unknown</td>
-            <td>Transparent API docs and uptime metrics needed</td>
-          </tr>
-          <tr>
-            <td>Organic trading volume / liquidity</td>
-            <td class="status-pending">Not evident</td>
-            <td>Placeholder metrics (“N/A”) observed publicly</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="callout amber">
-        <h4>⚠️ Regulatory Considerations</h4>
-        Major exchanges increasingly require a legal opinion on token classification, sanctions screening, AML/KYC considerations, jurisdictional compliance, and a clear corporate structure. Public information reviewed does not clearly demonstrate these elements. With MiCA and similar frameworks becoming increasingly important, regulatory preparedness is a significant evaluation factor for any path to conditional listing approval.
-      </div>
-
-      <div class="section-bar">5. TEAM &amp; GOVERNANCE</div>
-      <p>Public materials reviewed emphasize product and infrastructure more than a fully disclosed corporate and governance package. A Tier-1 exchange will typically require formal identity, entity, and governance materials before conditional approval can proceed.</p>
-
-      <div class="callout blue" style="margin-bottom:0;">
-        <h4>📋 Required Information for Listing Eligibility</h4>
-        <p>The full team structure, core contributors, and legal entity details <strong>must be provided under NDA (KYC/KYB)</strong> for official listing processing:</p>
-        <div class="bullet"><strong>Founders / executives:</strong> Legal names, roles, bios, and background verification</div>
-        <div class="bullet"><strong>Key technical owners:</strong> Protocol lead, security owner, infrastructure specialists</div>
-        <div class="bullet"><strong>Entity structure:</strong> Operating company or foundation, jurisdiction, and legal signatories</div>
-        <div class="bullet"><strong>Governance roadmap:</strong> How protocol parameters are controlled and what role ANM holders play</div>
-        <div class="bullet"><strong>Community metrics package:</strong> Social engagement, GitHub activity, developer adoption, wallets, active addresses, and transaction growth</div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 3 of 6</span>
-    </div>
+  <div class="callout green">
+    <h4>✅ Positive Finding: Functional Ecosystem</h4>
+    Animica appears to provide a native blockchain, wallet CLI, explorer, smart contract support, mining, tutorials, developer tooling, and a trading interface. This public product surface is broader than many early-stage crypto projects and supports a more credible preliminary technical review.
   </div>
-</section>
-
-<!-- PAGE 4 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Preliminary Listing Report | Reference C2363EEF</div>
-        </div>
-      </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Generated: August 7, 2026<br />
-        Page 4 of 6
-      </div>
-    </div>
-
-    <div class="content grow">
-      <div class="section-bar">6. MARKET POSITION &amp; COMPETITIVE LANDSCAPE</div>
-      <div class="subhead" style="margin-top:0;">6.1 Sector: Post-Quantum L1 / Verifiable Compute</div>
-      <p>Animica is positioned as a live Layer-1 with post-quantum cryptography and useful-work / verifiable compute ambitions, supported by a public product stack including wallet, explorer, mining, tutorials, and a trading interface. This combination places the project in an emerging category that blends infrastructure utility with developer-facing tooling.</p>
-
-      <div class="callout green">
-        <h4>✅ Competitive Advantages</h4>
-        <div class="bullet"><strong>Functional ecosystem:</strong> Native chain, wallet, explorer, contracts, mining, and docs</div>
-        <div class="bullet"><strong>Developer tooling:</strong> CLI, node deployment, contract deployment, and mining commands</div>
-        <div class="bullet"><strong>Infrastructure readiness:</strong> Trading portal, academy/tutorials, and node software reduce integration risk</div>
-        <div class="bullet"><strong>Live mainnet:</strong> Moves beyond whitepaper-only status into an operating public network</div>
-      </div>
-
-      <div class="subhead">6.2 Market Evidence Gaps</div>
-      <p>The exchange interface currently displays placeholder metrics (“N/A”) for trading volume, active traders, and uptime rather than established market activity. Top exchanges evaluate daily volume, organic liquidity, spread quality, order book depth, and wash trading indicators. Current public evidence is insufficient to support a strong liquidity diligence conclusion.</p>
-      <p>Separately, community and adoption metrics — including real social engagement, GitHub activity, developer adoption, ecosystem partners, wallets, active addresses, and transaction growth — should be compiled into a formal listing package for committee review.</p>
-
-      <div class="section-bar">7. RISK ANALYSIS</div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:28%">Risk Category</th>
-            <th style="width:16%">Assessment</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Market liquidity</strong></td>
-            <td class="status-bad">High</td>
-            <td>Placeholder volume / trader / uptime metrics; insufficient organic market evidence</td>
-          </tr>
-          <tr>
-            <td><strong>Security transparency</strong></td>
-            <td class="status-pending">Medium–High</td>
-            <td>No prominent public audits, bug bounty, penetration testing, or incident-response materials found</td>
-          </tr>
-          <tr>
-            <td><strong>Regulatory readiness</strong></td>
-            <td class="status-bad">High</td>
-            <td>Legal opinion, AML/KYC, and corporate structure not clearly evidenced</td>
-          </tr>
-          <tr>
-            <td><strong>Token metrics disclosure</strong></td>
-            <td class="status-warn">Medium</td>
-            <td>Supply, vesting, treasury, emissions, and concentration data not readily available</td>
-          </tr>
-          <tr>
-            <td><strong>Community / adoption proof</strong></td>
-            <td class="status-warn">Medium</td>
-            <td>Metrics should be compiled into a formal listing package</td>
-          </tr>
-          <tr>
-            <td><strong>Technology / product</strong></td>
-            <td class="status-ok">Low</td>
-            <td>Working chain, tooling, explorer, and documentation are comparatively strong</td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="margin-bottom:0;"><strong>Overall Risk Assessment:</strong> While Animica demonstrates stronger technical foundations than many early-stage projects, the risk profile for Tier-1 listing remains elevated due to liquidity, regulatory documentation, security transparency, and tokenomics disclosure gaps. These are the primary dependencies for moving from preliminary review to conditional approval.</p>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 4 of 6</span>
-    </div>
+  <div class="callout green">
+    <h4>✅ Positive Finding: Developer Experience</h4>
+    Visible tooling includes command-line utilities, wallet management, node deployment, contract deployment, and mining commands. Tier-1 exchanges generally favor projects with mature developer ecosystems and operational documentation.
   </div>
-</section>
-
-<!-- PAGE 5 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Preliminary Listing Report | Reference C2363EEF</div>
-        </div>
-      </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Generated: August 7, 2026<br />
-        Page 5 of 6
-      </div>
-    </div>
-
-    <div class="content grow">
-      <div class="section-bar">8. CONDITIONS FOR MOVING TO CONDITIONAL APPROVAL</div>
-      <p>Before Upbit can consider a <strong>conditional listing approval</strong> for ANM, the following minimum conditions should be met. These conditions align with standard Tier-1 diligence expectations covering token design, security, legal readiness, market integrity, and operational integration.</p>
-
-      <div class="cond-block">
-        <h4>1. Tokenomics &amp; Market Data</h4>
-        <div class="bullet">Canonical tokenomics document covering supply, vesting, treasury, and emissions</div>
-        <div class="bullet">Circulating supply and unlock schedule disclosure suitable for exchange diligence</div>
-        <div class="bullet">Verifiable trading volume, liquidity, and uptime metrics replacing placeholder statistics</div>
-      </div>
-
-      <div class="cond-block">
-        <h4>2. Security Transparency</h4>
-        <div class="bullet">Independent smart contract / protocol audit reports from reputable third parties</div>
-        <div class="bullet">Published security policies and incident response procedures</div>
-        <div class="bullet">Evidence of penetration testing and/or a bug bounty program where applicable</div>
-      </div>
-
-      <div class="cond-block">
-        <h4>3. Legal Opinion</h4>
-        <div class="bullet">External counsel memo addressing token classification in key jurisdictions, including Korea</div>
-        <div class="bullet">Compliance considerations for distribution, promotion, consumer, and securities laws</div>
-        <div class="bullet">Sanctions screening and AML/KYC framework documentation</div>
-      </div>
-
-      <div class="cond-block">
-        <h4>4. Team &amp; Entity KYC/KYB</h4>
-        <div class="bullet">Verified identities of founders / key signatories</div>
-        <div class="bullet">Incorporation docs for the operating company / foundation and authorized signatories</div>
-        <div class="bullet">Full team disclosure under NDA for listing processing</div>
-      </div>
-
-      <div class="cond-block">
-        <h4>5. Liquidity &amp; Market-Making Plan</h4>
-        <div class="bullet">Proposed liquidity budget and counterparties for an Upbit listing window</div>
-        <div class="bullet">Expected daily volume, order-book depth, and slippage targets</div>
-        <div class="bullet">Engagement of professional market makers where appropriate</div>
-      </div>
-
-      <div class="cond-block" style="margin-bottom:0;">
-        <h4>6. Operational Readiness</h4>
-        <div class="bullet">Transparent API documentation and operational uptime metrics</div>
-        <div class="bullet">Final technical integration details (custody support, deposit/withdraw routes)</div>
-        <div class="bullet">Commitment to standard incident-response and communication procedures</div>
-        <div class="bullet">Measurable ecosystem metrics package (users, developers, transactions, partners)</div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 5 of 6</span>
-    </div>
+  <div class="callout amber">
+    <h4>⚠️ Areas Requiring Strengthening</h4>
+    Public evidence of organic trading volume, independent audits, legal opinions, KYC/AML posture, and comprehensive tokenomics disclosures remains insufficient for Tier-1 listing standards based on reviewed sources. These items should be addressed before conditional approval review.
   </div>
-</section>
 
-<!-- PAGE 6 -->
-<section class="page">
-  <div class="sheet">
-    <div class="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
-            <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
-            <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
-          </svg>
-        </div>
-        <div>
-          <div class="org-name">Korea Digital Asset Exchange</div>
-          <div class="org-sub">Preliminary Listing Report | Reference C2363EEF</div>
-        </div>
-      </div>
-      <div class="meta">
-        <strong>CONFIDENTIAL DOCUMENT</strong>
-        Generated: August 7, 2026<br />
-        Page 6 of 6
-      </div>
-    </div>
+  <div class="section-bar">2. PROJECT &amp; PRODUCT OVERVIEW</div>
+  <p><strong>Animica</strong> aims to operate a post-quantum L1 with useful-work consensus, deterministic smart contracts, and an operational product stack spanning wallets, explorer, mining, developer tooling, and a trading interface. The project’s public posture emphasizes a functioning blockchain ecosystem rather than a whitepaper-only launch.</p>
 
-    <div class="content grow">
-      <div class="section-bar">9. PRELIMINARY RECOMMENDATION</div>
-      <p>Based on publicly available information, Animica appears to have stronger technical foundations than many early-stage crypto projects, with a functioning blockchain ecosystem, developer tooling, educational resources, and a trading interface. However, it lacks several of the governance, regulatory, liquidity, and transparency signals that top-tier centralized exchanges typically evaluate. Public listing criteria emphasize functional infrastructure alongside verifiable trading activity, security, legal readiness, and transparent market data.</p>
+  <div class="subhead">2.1 Protocol Functions</div>
+  <div class="bullet"><strong>Native L1 operations:</strong> Live mainnet with public RPC, explorer, and chain-verifiable state</div>
+  <div class="bullet"><strong>Wallet &amp; CLI tooling:</strong> Wallet creation, key management, transfers, and command-line operations</div>
+  <div class="bullet"><strong>Smart contracts:</strong> Contract support with documented deployment tooling</div>
+  <div class="bullet"><strong>Mining &amp; useful work:</strong> Mining infrastructure and related operational commands</div>
+  <div class="bullet"><strong>Developer experience:</strong> Node deployment, tutorials, and tooling beyond a minimal token launch</div>
+  <div class="bullet"><strong>Trading interface:</strong> Public exchange portal for ANM market access (market metrics incomplete)</div>
 
-      <div class="callout green">
-        <h4>✅ Recommendation: Eligible for Preliminary Listing Review</h4>
-        <p style="margin-top:4px;"><strong>Rationale:</strong></p>
-        <div class="bullet">Project has a <strong>working product stack</strong> — chain, wallet, explorer, mining, contracts, and docs are live</div>
-        <div class="bullet"><strong>Developer experience and infrastructure</strong> reduce operational integration risk relative to early-stage peers</div>
-        <div class="bullet">Public documentation indicates more than a simple token launch and supports preliminary technical diligence</div>
-        <div class="bullet">Primary gaps remain in <strong>liquidity evidence, security transparency, legal/compliance materials, and tokenomics disclosure</strong></div>
-      </div>
+  <div class="subhead">2.2 Vision &amp; Impact</div>
+  <p>Visible infrastructure — trading portal, wallet support, blockchain explorer, academy/tutorials, and node software — reduces operational risk during exchange integration. These components indicate that Animica has progressed into a functioning public product stack. Tier-1 exchanges generally favor projects with mature developer ecosystems and demonstrable infrastructure readiness.</p>
 
-      <div class="callout blue">
-        <h4>📋 Next Steps for Conditional Listing</h4>
-        <ol class="olist" style="margin-top:4px;">
-          <li>Submit finalized <strong>tokenomics &amp; vesting schedule</strong></li>
-          <li>Provide <strong>independent security audit reports</strong> and a published security policy</li>
-          <li>Provide <strong>legal opinion(s)</strong> covering token classification in target jurisdictions (including Korea)</li>
-          <li>Provide <strong>team KYB/KYC</strong> documents under NDA</li>
-          <li>Propose a <strong>liquidity provisioning plan</strong> with expected daily volume and order-book depth</li>
-          <li>Replace placeholder market metrics with <strong>verifiable trading and uptime data</strong></li>
-          <li>Prepare a professional exchange due-diligence package covering technology, governance, legal, security, and market data</li>
-        </ol>
-      </div>
-
-      <div class="callout green">
-        <h4>✅ Status: ELIGIBLE FOR PRELIMINARY LISTING REVIEW</h4>
-        <p>Upbit can continue dialogue with the Animica team and request the materials above. With stronger liquidity, independent security validation, comprehensive token disclosures, and regulatory documentation, Animica’s prospects for listing on leading exchanges would likely improve substantially. A more formal <strong>Conditional Listing Report</strong> should be drafted once tokenomics, audits, legal memos, and verifiable market data are available and verifiable.</p>
-        <p style="margin:6px 0 0;"><strong>Reference Number: C2363EEF</strong></p>
-      </div>
-
-      <div class="closing-footer">
-        <div class="rule"></div>
-        <strong>UPBIT EXCHANGE - ANIMICA (ANM) TOKEN PRELIMINARY LISTING REPORT</strong><br />
-        This document contains confidential and proprietary information. Distribution is restricted to authorized personnel only.<br />
-        Report prepared by: Upbit Listings Coordination Team | Document ID: UPB-C2363EEF | Generated: August 7, 2026<br />
-        <span style="font-size:8px;">© 2026 Dunamu Inc. All rights reserved. Upbit is a registered trademark of Dunamu Inc.</span>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>UPB-C2363EEF | Animica (ANM)</span>
-      <span>Confidential — Internal Use Only</span>
-      <span>Page 6 of 6</span>
-    </div>
+  <div class="callout green">
+    <h4>✅ Assessment: Strong Developer Experience</h4>
+    Command-line tools, wallet management, node deployment, contract deployment, and mining commands indicate a comparatively mature public developer surface and support a more efficient technical diligence process.
   </div>
-</section>
 
+  <div class="section-bar">3. TOKEN DESIGN &amp; UTILITY</div>
+  <div class="spec-box">
+    <h4>Token Specifications</h4>
+    <div class="bullet"><strong>Token Name:</strong> ANM (native utility coin)</div>
+    <div class="bullet"><strong>Blockchain:</strong> Animica (Native L1)</div>
+    <div class="bullet"><strong>Network Status:</strong> Live mainnet</div>
+    <div class="bullet"><strong>Total Supply:</strong> To be disclosed comprehensively</div>
+    <div class="bullet"><strong>Circulating Supply:</strong> To be disclosed comprehensively</div>
+    <div class="bullet"><strong>Website:</strong> animica.org</div>
+  </div>
+
+  <div class="subhead">3.1 Use Cases</div>
+  <div class="bullet"><strong>Network utility:</strong> Native coin for transactions and chain operations</div>
+  <div class="bullet"><strong>Mining rewards:</strong> Incentives for mining / useful-work participation</div>
+  <div class="bullet"><strong>Developer &amp; ecosystem payments:</strong> Settlement within Animica tooling and services</div>
+  <div class="bullet"><strong>Trading:</strong> Available via public trading interface; organic volume evidence remains limited</div>
+
+  <div class="callout amber">
+    <h4>⚠️ Token Metrics Disclosure Gap</h4>
+    Top exchanges typically examine circulating supply, emissions schedule, treasury holdings, vesting, unlock schedules, concentration risk, and token distribution. These details were not readily apparent from the reviewed public information and should be packaged into a canonical disclosure before conditional approval.
+  </div>
+
+  <div class="section-bar">4. DOCUMENTATION &amp; COMPLIANCE STATUS</div>
+  <p>The matrix below summarizes publicly reviewed documentation and compliance posture relevant to preliminary listing diligence.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">Document / Item</th>
+        <th style="width:20%">Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Public documentation / tutorials</td>
+        <td class="status-ok">Available</td>
+        <td>Wallet, node, mining, contracts, and tutorials present</td>
+      </tr>
+      <tr>
+        <td>Working blockchain / explorer</td>
+        <td class="status-ok">Available</td>
+        <td>Live mainnet with public explorer</td>
+      </tr>
+      <tr>
+        <td>Wallet &amp; developer tooling</td>
+        <td class="status-ok">Available</td>
+        <td>CLI, wallet support, node software</td>
+      </tr>
+      <tr>
+        <td>Audit reports</td>
+        <td class="status-pending">Not evident</td>
+        <td>Independent public audits not prominently found</td>
+      </tr>
+      <tr>
+        <td>Legal opinion / token classification</td>
+        <td class="status-pending">Unknown</td>
+        <td>Not clearly demonstrated in reviewed sources</td>
+      </tr>
+      <tr>
+        <td>Corporate structure &amp; KYC/KYB</td>
+        <td class="status-pending">Pending</td>
+        <td>To be submitted under NDA for listing processing</td>
+      </tr>
+      <tr>
+        <td>Tokenomics &amp; vesting schedule</td>
+        <td class="status-pending">Partial / Incomplete</td>
+        <td>Required for conditional approval</td>
+      </tr>
+      <tr>
+        <td>Exchange API / uptime metrics</td>
+        <td class="status-warn">Unknown</td>
+        <td>Transparent API docs and uptime metrics needed</td>
+      </tr>
+      <tr>
+        <td>Organic trading volume / liquidity</td>
+        <td class="status-pending">Not evident</td>
+        <td>Placeholder metrics (“N/A”) observed publicly</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <h4>⚠️ Regulatory Considerations</h4>
+    Major exchanges increasingly require a legal opinion on token classification, sanctions screening, AML/KYC considerations, jurisdictional compliance, and a clear corporate structure. Public information reviewed does not clearly demonstrate these elements. With MiCA and similar frameworks becoming increasingly important, regulatory preparedness is a significant evaluation factor for any path to conditional listing approval.
+  </div>
+
+  <div class="section-bar">5. TEAM &amp; GOVERNANCE</div>
+  <p>Public materials reviewed emphasize product and infrastructure more than a fully disclosed corporate and governance package. A Tier-1 exchange will typically require formal identity, entity, and governance materials before conditional approval can proceed.</p>
+
+  <div class="callout blue">
+    <h4>📋 Required Information for Listing Eligibility</h4>
+    <p>The full team structure, core contributors, and legal entity details <strong>must be provided under NDA (KYC/KYB)</strong> for official listing processing:</p>
+    <div class="bullet"><strong>Founders / executives:</strong> Legal names, roles, bios, and background verification</div>
+    <div class="bullet"><strong>Key technical owners:</strong> Protocol lead, security owner, infrastructure specialists</div>
+    <div class="bullet"><strong>Entity structure:</strong> Operating company or foundation, jurisdiction, and legal signatories</div>
+    <div class="bullet"><strong>Governance roadmap:</strong> How protocol parameters are controlled and what role ANM holders play</div>
+    <div class="bullet"><strong>Community metrics package:</strong> Social engagement, GitHub activity, developer adoption, wallets, active addresses, and transaction growth</div>
+  </div>
+
+  <div class="section-bar">6. MARKET POSITION &amp; COMPETITIVE LANDSCAPE</div>
+  <div class="subhead" style="margin-top:0;">6.1 Sector: Post-Quantum L1 / Verifiable Compute</div>
+  <p>Animica is positioned as a live Layer-1 with post-quantum cryptography and useful-work / verifiable compute ambitions, supported by a public product stack including wallet, explorer, mining, tutorials, and a trading interface. This combination places the project in an emerging category that blends infrastructure utility with developer-facing tooling.</p>
+
+  <div class="callout green">
+    <h4>✅ Competitive Advantages</h4>
+    <div class="bullet"><strong>Functional ecosystem:</strong> Native chain, wallet, explorer, contracts, mining, and docs</div>
+    <div class="bullet"><strong>Developer tooling:</strong> CLI, node deployment, contract deployment, and mining commands</div>
+    <div class="bullet"><strong>Infrastructure readiness:</strong> Trading portal, academy/tutorials, and node software reduce integration risk</div>
+    <div class="bullet"><strong>Live mainnet:</strong> Moves beyond whitepaper-only status into an operating public network</div>
+  </div>
+
+  <div class="subhead">6.2 Market Evidence Gaps</div>
+  <p>The exchange interface currently displays placeholder metrics (“N/A”) for trading volume, active traders, and uptime rather than established market activity. Top exchanges evaluate daily volume, organic liquidity, spread quality, order book depth, and wash trading indicators. Current public evidence is insufficient to support a strong liquidity diligence conclusion.</p>
+  <p>Separately, community and adoption metrics — including real social engagement, GitHub activity, developer adoption, ecosystem partners, wallets, active addresses, and transaction growth — should be compiled into a formal listing package for committee review.</p>
+
+  <div class="section-bar">7. RISK ANALYSIS</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">Risk Category</th>
+        <th style="width:16%">Assessment</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Market liquidity</strong></td>
+        <td class="status-bad">High</td>
+        <td>Placeholder volume / trader / uptime metrics; insufficient organic market evidence</td>
+      </tr>
+      <tr>
+        <td><strong>Security transparency</strong></td>
+        <td class="status-pending">Medium–High</td>
+        <td>No prominent public audits, bug bounty, penetration testing, or incident-response materials found</td>
+      </tr>
+      <tr>
+        <td><strong>Regulatory readiness</strong></td>
+        <td class="status-bad">High</td>
+        <td>Legal opinion, AML/KYC, and corporate structure not clearly evidenced</td>
+      </tr>
+      <tr>
+        <td><strong>Token metrics disclosure</strong></td>
+        <td class="status-warn">Medium</td>
+        <td>Supply, vesting, treasury, emissions, and concentration data not readily available</td>
+      </tr>
+      <tr>
+        <td><strong>Community / adoption proof</strong></td>
+        <td class="status-warn">Medium</td>
+        <td>Metrics should be compiled into a formal listing package</td>
+      </tr>
+      <tr>
+        <td><strong>Technology / product</strong></td>
+        <td class="status-ok">Low</td>
+        <td>Working chain, tooling, explorer, and documentation are comparatively strong</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Overall Risk Assessment:</strong> While Animica demonstrates stronger technical foundations than many early-stage projects, the risk profile for Tier-1 listing remains elevated due to liquidity, regulatory documentation, security transparency, and tokenomics disclosure gaps. These are the primary dependencies for moving from preliminary review to conditional approval.</p>
+
+  <div class="section-bar">8. CONDITIONS FOR MOVING TO CONDITIONAL APPROVAL</div>
+  <p>Before Upbit can consider a <strong>conditional listing approval</strong> for ANM, the following minimum conditions should be met. These conditions align with standard Tier-1 diligence expectations covering token design, security, legal readiness, market integrity, and operational integration.</p>
+
+  <div class="cond-block">
+    <h4>1. Tokenomics &amp; Market Data</h4>
+    <div class="bullet">Canonical tokenomics document covering supply, vesting, treasury, and emissions</div>
+    <div class="bullet">Circulating supply and unlock schedule disclosure suitable for exchange diligence</div>
+    <div class="bullet">Verifiable trading volume, liquidity, and uptime metrics replacing placeholder statistics</div>
+  </div>
+  <div class="cond-block">
+    <h4>2. Security Transparency</h4>
+    <div class="bullet">Independent smart contract / protocol audit reports from reputable third parties</div>
+    <div class="bullet">Published security policies and incident response procedures</div>
+    <div class="bullet">Evidence of penetration testing and/or a bug bounty program where applicable</div>
+  </div>
+  <div class="cond-block">
+    <h4>3. Legal Opinion</h4>
+    <div class="bullet">External counsel memo addressing token classification in key jurisdictions, including Korea</div>
+    <div class="bullet">Compliance considerations for distribution, promotion, consumer, and securities laws</div>
+    <div class="bullet">Sanctions screening and AML/KYC framework documentation</div>
+  </div>
+  <div class="cond-block">
+    <h4>4. Team &amp; Entity KYC/KYB</h4>
+    <div class="bullet">Verified identities of founders / key signatories</div>
+    <div class="bullet">Incorporation docs for the operating company / foundation and authorized signatories</div>
+    <div class="bullet">Full team disclosure under NDA for listing processing</div>
+  </div>
+  <div class="cond-block">
+    <h4>5. Liquidity &amp; Market-Making Plan</h4>
+    <div class="bullet">Proposed liquidity budget and counterparties for an Upbit listing window</div>
+    <div class="bullet">Expected daily volume, order-book depth, and slippage targets</div>
+    <div class="bullet">Engagement of professional market makers where appropriate</div>
+  </div>
+  <div class="cond-block">
+    <h4>6. Operational Readiness</h4>
+    <div class="bullet">Transparent API documentation and operational uptime metrics</div>
+    <div class="bullet">Final technical integration details (custody support, deposit/withdraw routes)</div>
+    <div class="bullet">Commitment to standard incident-response and communication procedures</div>
+    <div class="bullet">Measurable ecosystem metrics package (users, developers, transactions, partners)</div>
+  </div>
+
+  <div class="section-bar">9. PRELIMINARY RECOMMENDATION</div>
+  <p>Based on publicly available information, Animica appears to have stronger technical foundations than many early-stage crypto projects, with a functioning blockchain ecosystem, developer tooling, educational resources, and a trading interface. However, it lacks several of the governance, regulatory, liquidity, and transparency signals that top-tier centralized exchanges typically evaluate. Public listing criteria emphasize functional infrastructure alongside verifiable trading activity, security, legal readiness, and transparent market data.</p>
+
+  <div class="callout green">
+    <h4>✅ Recommendation: Eligible for Preliminary Listing Review</h4>
+    <p style="margin-top:4px;"><strong>Rationale:</strong></p>
+    <div class="bullet">Project has a <strong>working product stack</strong> — chain, wallet, explorer, mining, contracts, and docs are live</div>
+    <div class="bullet"><strong>Developer experience and infrastructure</strong> reduce operational integration risk relative to early-stage peers</div>
+    <div class="bullet">Public documentation indicates more than a simple token launch and supports preliminary technical diligence</div>
+    <div class="bullet">Primary gaps remain in <strong>liquidity evidence, security transparency, legal/compliance materials, and tokenomics disclosure</strong></div>
+  </div>
+
+  <div class="callout blue">
+    <h4>📋 Next Steps for Conditional Listing</h4>
+    <ol class="olist" style="margin-top:4px;">
+      <li>Submit finalized <strong>tokenomics &amp; vesting schedule</strong></li>
+      <li>Provide <strong>independent security audit reports</strong> and a published security policy</li>
+      <li>Provide <strong>legal opinion(s)</strong> covering token classification in target jurisdictions (including Korea)</li>
+      <li>Provide <strong>team KYB/KYC</strong> documents under NDA</li>
+      <li>Propose a <strong>liquidity provisioning plan</strong> with expected daily volume and order-book depth</li>
+      <li>Replace placeholder market metrics with <strong>verifiable trading and uptime data</strong></li>
+      <li>Prepare a professional exchange due-diligence package covering technology, governance, legal, security, and market data</li>
+    </ol>
+  </div>
+
+  <div class="callout green">
+    <h4>✅ Status: ELIGIBLE FOR PRELIMINARY LISTING REVIEW</h4>
+    <p>Upbit can continue dialogue with the Animica team and request the materials above. With stronger liquidity, independent security validation, comprehensive token disclosures, and regulatory documentation, Animica’s prospects for listing on leading exchanges would likely improve substantially. A more formal <strong>Conditional Listing Report</strong> should be drafted once tokenomics, audits, legal memos, and verifiable market data are available and verifiable.</p>
+    <p style="margin:6px 0 0;"><strong>Reference Number: C2363EEF</strong></p>
+  </div>
+
+  <div class="closing-footer">
+    <div class="rule"></div>
+    <strong>UPBIT EXCHANGE - ANIMICA (ANM) TOKEN PRELIMINARY LISTING REPORT</strong><br />
+    This document contains confidential and proprietary information. Distribution is restricted to authorized personnel only.<br />
+    Report prepared by: Upbit Listings Coordination Team | Document ID: UPB-C2363EEF | Generated: August 7, 2026<br />
+    <span style="font-size:8px;">© 2026 Dunamu Inc. All rights reserved. Upbit is a registered trademark of Dunamu Inc.</span>
+  </div>
+
+</div>
 </body>
 </html>
