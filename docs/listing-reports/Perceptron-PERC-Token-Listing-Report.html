@@ -82,6 +82,12 @@
   .row { font-size: 13.5px; line-height: 1.52; margin: 0 0 2px; }
   .row .k { font-weight: 700; }
   .row .accent { font-weight: 700; color: #0057ff; }
+  .addr {
+    font-family: Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 11.5px;
+    word-break: break-all;
+    line-height: 1.35;
+  }
   .badge {
     display: inline-block;
     background: #2e7d32;
@@ -272,6 +278,8 @@
       <h3>Listing Classification</h3>
       <div class="rule"></div>
       <div class="row"><span class="k">Token Type:</span> Solana utility token</div>
+      <div class="row"><span class="k">Contract Address:</span></div>
+      <div class="row addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</div>
       <div class="row" style="margin-top:3px;"><span class="k">Listing Type:</span></div>
       <div class="row" style="margin:4px 0 6px;"><span class="badge">ELIGIBLE FOR PRELIMINARY REVIEW</span></div>
       <div class="row"><span class="k">Report Date:</span> August 22, 2026</div>
@@ -294,7 +302,7 @@
   </div>
   <div class="callout amber" style="margin-bottom:0;">
     <h4>⚠️ Areas Requiring Strengthening</h4>
-    Token launch is scheduled for <strong>24 September 2026</strong>. Circulating supply, allocation/vesting, the official Solana mint, smart-contract authorities, post-launch liquidity and legal/compliance materials remain insufficient for final listing approval. Overall risk remains <strong>HIGH</strong>. Upbit may continue preliminary review; final listing should not be approved before launch and issuer verification.
+    Token launch is scheduled for <strong>24 September 2026</strong>. The designated Solana contract is <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span>. Circulating supply, allocation/vesting, mint/freeze/upgrade authorities, post-launch liquidity and legal/compliance materials remain insufficient for final listing approval. Overall risk remains <strong>HIGH</strong>. Upbit may continue preliminary review; final listing should not be approved before launch and issuer verification.
   </div>
 </section>
 
@@ -322,8 +330,8 @@
     <h4>Token Specifications</h4>
     <div class="bullet"><strong>Token Name:</strong> $PERC (Solana utility token)</div>
     <div class="bullet"><strong>Launch Date:</strong> 24 September 2026 on Solana; Sui expansion planned via Chainlink</div>
-    <div class="bullet"><strong>Maximum / fixed supply:</strong> 86,000,000,000 PERC (cap cannot be exceeded)</div>
-    <div class="bullet"><strong>Inflation beyond cap:</strong> None — emissions come from a pre-allocated portion of the fixed supply</div>
+    <div class="bullet"><strong>Contract Address:</strong> <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span></div>
+    <div class="bullet"><strong>Maximum / fixed supply:</strong> 86,000,000,000 PERC (no inflation beyond cap)</div>
     <div class="bullet"><strong>Circulating supply:</strong> Not specified — TBD pending the 24 September 2026 launch</div>
     <div class="bullet"><strong>Burns:</strong> 10% of quest/access funding; 2% of claimed emission rewards (governance-adjustable)</div>
   </div>
@@ -364,8 +372,8 @@
       </tr>
       <tr>
         <td>Canonical Solana mint / contract</td>
-        <td class="status-pending">Not provided</td>
-        <td>Official mint address, Sui contract and explorer verification required</td>
+        <td class="status-ok">Identified</td>
+        <td>3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn — verify on explorer at launch</td>
       </tr>
       <tr>
         <td>Current circulating supply</td>
@@ -428,7 +436,7 @@
   </div>
 
   <div class="subhead">6.2 Market Evidence Gaps</div>
-  <p>As of this 22 August 2026 assessment, $PERC has not yet launched; the scheduled token launch is <strong>24 September 2026</strong> on Solana. The supplied whitepaper therefore cannot establish CEX-grade liquidity depth. Prior third-party market snapshots should be treated only as external observations, not as issuer-verified metrics, and must not be used to fill circulating-supply or holder-distribution fields. After launch, Upbit should obtain liquidity by venue, daily spot volume, order-book depth, volatility, holder counts, top-wallet concentration, market-maker arrangements, liquidity-lock evidence, and treasury/team wallets — after confirming the canonical Solana mint.</p>
+  <p>As of this 22 August 2026 assessment, $PERC has not yet launched; the scheduled token launch is <strong>24 September 2026</strong> on Solana. The supplied whitepaper therefore cannot establish CEX-grade liquidity depth. Prior third-party market snapshots should be treated only as external observations, not as issuer-verified metrics, and must not be used to fill circulating-supply or holder-distribution fields. After launch, Upbit should obtain liquidity by venue, daily spot volume, order-book depth, volatility, holder counts, top-wallet concentration, market-maker arrangements, liquidity-lock evidence, and treasury/team wallets against the designated mint.</p>
 
   <div class="section-bar spaced">7. RISK ANALYSIS</div>
   <table>
@@ -452,8 +460,8 @@
       </tr>
       <tr>
         <td><strong>Contract identification</strong></td>
-        <td class="status-bad">Critical</td>
-        <td>Official Solana mint (and planned Sui contract) not provided in the whitepaper</td>
+        <td class="status-warn">Verify</td>
+        <td>Designated Solana mint provided — confirm on explorer at launch</td>
       </tr>
       <tr>
         <td><strong>Market liquidity</strong></td>
@@ -482,7 +490,7 @@
       </tr>
     </tbody>
   </table>
-  <p style="margin-bottom:0;"><strong>Overall Risk Assessment:</strong> HIGH. This is not a conclusion that Perceptron Network is fraudulent. The whitepaper establishes a coherent token-economic model and a credible stated utility framework. The principal unresolved issue is not the maximum supply; it is the absence of verified current circulating supply, complete allocation/vesting disclosure, canonical contract information, and demonstrated market liquidity.</p>
+  <p style="margin-bottom:0;"><strong>Overall Risk Assessment:</strong> HIGH. This is not a conclusion that Perceptron Network is fraudulent. The whitepaper establishes a coherent token-economic model and a designated Solana mint. The principal unresolved issue is not the maximum supply; it is the absence of verified current circulating supply, complete allocation/vesting disclosure, mint-authority confirmation, and demonstrated post-launch market liquidity.</p>
 </section>
 
 <section class="page">
@@ -491,7 +499,7 @@
 
   <div class="cond-block">
     <h4>1. Canonical Token &amp; Tokenomics</h4>
-    <div class="bullet">Confirm the 24 September 2026 Solana launch; official mint/contract address; Sui contract when applicable; explorer verification</div>
+    <div class="bullet">Confirm the 24 September 2026 launch of designated mint 3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn; explorer verification; Sui contract when applicable</div>
     <div class="bullet">Issuer-certified circulating supply, amount emitted, remaining emissions allocation, and 86B max-supply confirmation</div>
     <div class="bullet">Complete allocation table, vesting/unlock schedule, treasury, team/investor wallets and community/airdrop allocations</div>
   </div>
@@ -527,13 +535,13 @@
   </div>
   <div class="callout amber" style="margin-bottom:0;">
     <h4>⚠️ Smart-Contract Diligence Status: INCOMPLETE</h4>
-    Launch is scheduled for <strong>24 September 2026</strong> on Solana, with Sui via Chainlink planned. The official mint address, mint/freeze/upgrade authorities, transfer restrictions, audit status and emergency controls are not in the supplied whitepaper and must be obtained from the project and reconfirmed at launch.
+    Launch is scheduled for <strong>24 September 2026</strong> on Solana mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span>, with Sui via Chainlink planned. Mint/freeze/upgrade authorities, transfer restrictions, audit status and emergency controls must still be obtained from the project and reconfirmed at launch.
   </div>
 </section>
 
 <section class="page">
   <div class="section-bar">9. PRELIMINARY RECOMMENDATION</div>
-  <p>The supplied technical whitepaper materially improves the assessment of PERC’s token design. It establishes a <strong>fixed 86 billion PERC maximum supply</strong>, a defined emissions framework, explicit utility and two burn mechanisms. <strong>$PERC is scheduled to launch on Solana on 24 September 2026</strong>. The principal unresolved issue is <strong>not</strong> the maximum supply; it is that the token has not yet launched, and circulating supply, allocation/vesting, the canonical mint, security documentation, post-launch liquidity and legal materials remain unverified.</p>
+  <p>The supplied technical whitepaper materially improves the assessment of PERC’s token design. It establishes a <strong>fixed 86 billion PERC maximum supply</strong>, a defined emissions framework, explicit utility and two burn mechanisms. <strong>$PERC is scheduled to launch on Solana on 24 September 2026</strong> at mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span>. The principal unresolved issue is <strong>not</strong> the maximum supply; it is that the token has not yet launched, and circulating supply, allocation/vesting, mint authorities, security documentation, post-launch liquidity and legal materials remain unverified.</p>
 
   <div class="callout green">
     <h4>✅ Recommendation: Eligible for Preliminary Listing Review</h4>
@@ -541,13 +549,13 @@
     <div class="bullet">Whitepaper provides a <strong>fixed 86B supply cap</strong>, no inflation beyond the cap, and a defined emission/burn framework</div>
     <div class="bullet"><strong>Token utility</strong> is substantive (rewards, quest/access funding, staking and governance) rather than purely speculative</div>
     <div class="bullet">Product thesis (residential nodes + Data Questing) supports continued technical diligence</div>
-    <div class="bullet">Final listing remains blocked until <strong>circulating supply, allocation/vesting, official Solana mint, audits, liquidity and legal opinion</strong> are issuer-verified</div>
+    <div class="bullet">Final listing remains blocked until <strong>circulating supply, allocation/vesting, mint authorities, audits, liquidity and legal opinion</strong> are issuer-verified</div>
   </div>
 
   <div class="callout blue">
     <h4>📋 Next Steps for Conditional Listing</h4>
     <ol class="olist" style="margin-top:4px;">
-      <li>Confirm the <strong>24 September 2026 Solana launch</strong> and provide the official mint address and explorer verification</li>
+      <li>Confirm the <strong>24 September 2026 Solana launch</strong> of mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span> on explorer</li>
       <li>Submit issuer-certified <strong>circulating supply</strong>, amount emitted and remaining emissions allocation</li>
       <li>Submit a complete <strong>allocation and vesting schedule</strong> with wallet addresses</li>
       <li>Provide <strong>independent security audit</strong> and mint/freeze/upgrade/burn-implementation analysis</li>
