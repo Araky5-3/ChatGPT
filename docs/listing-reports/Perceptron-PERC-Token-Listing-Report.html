@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Upbit Exchange - Perceptron Network (PERC) Token Listing Report</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma, "Liberation Sans", Arial, sans-serif;
+    color: #2c3030;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 11.5mm 9.5mm;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo svg { width: 80px; height: 22px; display: block; }
+  .org-name { font-weight: 700; font-size: 14.5px; line-height: 1.2; }
+  .org-sub { font-size: 12.5px; color: #666; margin-top: 2px; }
+  .meta {
+    text-align: right;
+    font-size: 12.5px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .meta strong { display: block; font-weight: 700; color: #666; }
+
+  .title-bar {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.35px;
+    text-align: center;
+    padding: 9px 12px;
+    border-radius: 3px;
+    margin: 0 0 11px;
+  }
+  .info-grid {
+    display: flex;
+    gap: 11px;
+    margin-bottom: 12px;
+  }
+  .card {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 12px 13px;
+  }
+  .card h3 {
+    margin: 0 0 7px;
+    font-size: 15.5px;
+    color: #0057ff;
+    font-weight: 700;
+  }
+  .card .rule {
+    height: 2px;
+    background: #0057ff;
+    margin-bottom: 9px;
+  }
+  .row { font-size: 13.5px; line-height: 1.52; margin: 0 0 2px; }
+  .row .k { font-weight: 700; }
+  .row .accent { font-weight: 700; color: #0057ff; }
+  .badge {
+    display: inline-block;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .badge.hold {
+    background: #c62828;
+  }
+
+  .section-bar {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 12px;
+    margin: 0 0 9px;
+    border-radius: 3px;
+  }
+  .section-bar.spaced { margin-top: 12px; }
+
+  p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
+  .subhead {
+    color: #0057ff;
+    font-size: 14.75px;
+    font-weight: 700;
+    margin: 9px 0 6px;
+  }
+  .bullet {
+    position: relative;
+    padding-left: 13px;
+    font-size: 13.5px;
+    line-height: 1.48;
+    margin: 0 0 4px;
+  }
+  .bullet::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4.5px;
+    height: 4.5px;
+    background: #2c3e50;
+    border-radius: 50%;
+  }
+
+  .callout {
+    border-radius: 4px;
+    padding: 12px 13px;
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .callout.green { background: #e8f5e9; border-left: 4px solid #2e7d32; }
+  .callout.amber { background: #fff3e0; border: 1.5px solid #f89800; }
+  .callout.blue { background: #f0f4ff; border-left: 4px solid #0057ff; }
+  .callout.red { background: #ffebee; border-left: 4px solid #c62828; }
+  .callout h4 { margin: 0 0 5px; font-size: 14.5px; font-weight: 700; }
+
+  .spec-box {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 11px 13px;
+    margin: 0 0 9px;
+  }
+  .spec-box h4 {
+    margin: 0 0 7px;
+    font-size: 14.5px;
+    color: #0057ff;
+    font-weight: 700;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 0 0 9px;
+  }
+  th {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+    padding: 7px 8px;
+  }
+  td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    vertical-align: top;
+    line-height: 1.38;
+  }
+  td.status-ok { background: #e8f5e9; color: #2e7d32; font-weight: 700; }
+  td.status-bad { background: #ffebee; color: #c62828; font-weight: 700; }
+  td.status-warn { background: #fff3e0; color: #ef6c00; }
+  td.status-pending { background: #ffebee; color: #c62828; font-weight: 700; }
+
+  .cond-block {
+    margin: 0 0 7px;
+    padding: 10px 11px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+  }
+  .cond-block h4 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .olist {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .olist li { margin: 0 0 4px; }
+
+  .closing-footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: #666;
+    line-height: 1.48;
+    margin-top: 14px;
+    padding-top: 10px;
+  }
+  .closing-footer .rule {
+    height: 2px;
+    background: #0057ff;
+    margin-bottom: 8px;
+  }
+
+  @media screen {
+    body { background: #e8eef5; padding: 16px 0; }
+    .page {
+      margin-bottom: 16px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="cover-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
+          <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
+        </svg>
+      </div>
+      <div>
+        <div class="org-name">Korea Digital Asset Exchange</div>
+        <div class="org-sub">Dunamu Inc. | Seoul, Republic of Korea</div>
+      </div>
+    </div>
+    <div class="meta">
+      <strong>CONFIDENTIAL DOCUMENT</strong>
+      Classification: Internal Use Only<br />
+      Generated: August 22, 2026<br />
+      Document ID: 4D8E9FB7
+    </div>
+  </div>
+
+  <div class="title-bar">PRELIMINARY LISTING REPORT</div>
+
+  <div class="info-grid">
+    <div class="card">
+      <h3>Project Information</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Reference ID:</span> <span class="accent">4D8E9FB7</span></div>
+      <div class="row"><span class="k">Project Name:</span> Perceptron Network</div>
+      <div class="row"><span class="k">Token Symbol:</span> PERC</div>
+      <div class="row"><span class="k">Classification:</span> AI / DePIN / Decentralized</div>
+      <div class="row">Data Infrastructure</div>
+      <div class="row"><span class="k">Blockchain:</span> Unconfirmed (Solana / Base)</div>
+      <div class="row"><span class="k">Website:</span> perceptrons.xyz</div>
+      <div class="row"><span class="k">Network Status:</span> Public product live</div>
+    </div>
+    <div class="card">
+      <h3>Listing Classification</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Token Type:</span> Fungible utility + micro-NFTs</div>
+      <div class="row" style="margin-top:3px;"><span class="k">Listing Type:</span></div>
+      <div class="row" style="margin:4px 0 6px;"><span class="badge hold">HOLD / ENHANCED DD REQUIRED</span></div>
+      <div class="row"><span class="k">Report Date:</span> August 22, 2026</div>
+      <div class="row"><span class="k">Assessment Status:</span> <span class="accent">Watchlist / Enhanced DD</span></div>
+      <div class="row"><span class="k">Prepared for:</span> Upbit Listings Committee</div>
+    </div>
+  </div>
+
+  <div class="section-bar">1. EXECUTIVE SUMMARY</div>
+  <p><strong>Perceptron Network</strong> presents itself as an AI/Web3 infrastructure project combining decentralized bandwidth and data collection with an incentive and reputation layer for AI agents. Public materials claim 700,000+ nodes globally and describe PERCs as tiered micro-NFTs that reward contributions and establish trust signals, alongside a separate <strong>$PERC</strong> fungible token used for community rewards and agent staking.</p>
+  <p>There is evidence of a real project and ecosystem activity: public documentation, a Chrome extension with hundreds of reviews, a reported strategic financing round, and a 2025 merger involving BlockMesh. However, the token currently presents material exchange-listing risks. Public market data is fragmented across multiple tokens using the PERC name/symbol, identifiable Solana liquidity is extremely thin, Phantom labels the Solana PERC token unverified, and the top 10 holders reportedly control 98.28% of that token’s supply.</p>
+
+  <div class="callout green">
+    <h4>✅ Positive Finding: Credible Product Surface</h4>
+    Public documentation, an active website, a Chrome Web Store listing, a reported BlockMesh merger, and claimed node/user activity indicate more than a ticker-only launch and support continued product diligence.
+  </div>
+  <div class="callout red">
+    <h4>⛔ Critical Finding: Canonical Token Not Established</h4>
+    Project documentation and currently discoverable market contracts do not provide enough clarity to establish a single, authoritative, exchange-ready PERC contract and token distribution model. An exchange should not rely on ticker or name matching alone.
+  </div>
+  <div class="callout amber" style="margin-bottom:0;">
+    <h4>⚠️ Overall Risk Rating: HIGH / RED</h4>
+    Listing recommendation at this stage is <strong>do not list</strong>. Place PERC on enhanced due-diligence / watchlist status until contract identity, liquidity, holder distribution, and quantitative tokenomics can be independently verified. Principal blockers are an unconfirmed canonical contract, multiple public PERC tokens, ~$2.5K–$2.8K observable liquidity, 98.28% top-10 concentration, and insufficient exchange-grade tokenomics disclosure.
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">2. PROJECT &amp; PRODUCT OVERVIEW</div>
+  <p><strong>Perceptron Network</strong> describes itself as an AI-agent infrastructure and decentralized data network. Its stated model involves users sharing unused bandwidth, collecting and providing data for AI applications, rewarding participants, and allowing AI agents to use PERCs as trust and engagement signals. Agents are described as generating revenue through PERC sales or auctions, while $PERC is distributed to qualifying community members and used for agent staking.</p>
+
+  <div class="subhead" style="margin-top:2px;">2.1 Protocol Functions</div>
+  <div class="bullet"><strong>Decentralized bandwidth sharing:</strong> Users contribute unused bandwidth to the data network</div>
+  <div class="bullet"><strong>AI data collection:</strong> Nodes gather or provide data used by AI applications</div>
+  <div class="bullet"><strong>PERC micro-NFTs:</strong> Tiered on-chain trust metrics rewarding contribution and engagement</div>
+  <div class="bullet"><strong>Agent incentive layer:</strong> AI agents use PERCs as trust, reputation, and engagement signals</div>
+  <div class="bullet"><strong>$PERC utility token:</strong> Community rewards, ecosystem access, and agent staking</div>
+
+  <div class="subhead">2.2 Vision &amp; Impact</div>
+  <p>A 2025 announcement following the Perceptron / BlockMesh merger reported 700,000+ active nodes and 200,000+ users engaged through Perceptron Agents. These figures are project-reported and should be independently verified before use in a listing profile. A third-party database records a July 2026 strategic round and approximately $6.5M in funding; aggregator figures are inconsistent and should not be treated as verified without primary-source confirmation.</p>
+
+  <div class="callout green">
+    <h4>✅ Assessment: Coherent AI / DePIN Thesis</h4>
+    The combination of a live public product, documentation, Chrome extension, and announced partnership/merger activity supports a more credible product review than a whitepaper-only token. This does not, by itself, establish listing readiness for the $PERC market asset.
+  </div>
+
+  <div class="section-bar spaced">3. TOKEN DESIGN &amp; UTILITY</div>
+  <div class="spec-box">
+    <h4>Token Specifications</h4>
+    <div class="bullet"><strong>Token Name:</strong> PERC (fungible utility token; distinct from PERC micro-NFTs)</div>
+    <div class="bullet"><strong>Blockchain:</strong> Not canonically confirmed — Solana and Base candidates observed</div>
+    <div class="bullet"><strong>Network Status:</strong> Public markets exist; official contract unverified</div>
+    <div class="bullet"><strong>Total / Circulating Supply:</strong> ~994.07M on the Phantom-indexed Solana token (unverified)</div>
+  </div>
+
+  <div class="subhead" style="margin-top:2px;">3.1 Use Cases</div>
+  <div class="bullet"><strong>Community rewards:</strong> Distribution to high-trust members based on PERC NFT holdings and tiers</div>
+  <div class="bullet"><strong>Agent staking:</strong> AI agents stake $PERC for premium functionality</div>
+  <div class="bullet"><strong>Ecosystem access:</strong> IP partnerships, games, and agent interoperability</div>
+  <div class="bullet"><strong>Trading:</strong> Fragmented public markets; no demonstrated mature spot price-discovery venue</div>
+
+  <div class="callout red" style="margin-bottom:0;">
+    <h4>⛔ Contract Ambiguity — Major Listing Blocker</h4>
+    Public sources identify several PERC tokens using the Perceptron name across Solana and Base, including a Phantom-unverified Solana token with 189 holders, 98.28% top-10 concentration, and ~$2.5K liquidity. Documentation does not provide exchange-grade supply, allocation, vesting, or unlock data. <strong>Which exact contract is the official listing asset?</strong>
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">4. DOCUMENTATION &amp; COMPLIANCE STATUS</div>
+  <p>The matrix below summarizes publicly reviewed documentation and compliance posture relevant to preliminary listing diligence. Current status for tokenomics and smart-contract assurance is <strong>RED / insufficient disclosure</strong>.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">Document / Item</th>
+        <th style="width:20%">Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Public documentation / product materials</td>
+        <td class="status-ok">Available</td>
+        <td>Website and docs describe product and token mechanics</td>
+      </tr>
+      <tr>
+        <td>Public product / Chrome extension</td>
+        <td class="status-ok">Available</td>
+        <td>Chrome Web Store listing: 4.6/5 from 817 ratings</td>
+      </tr>
+      <tr>
+        <td>Canonical contract / explorer verification</td>
+        <td class="status-pending">Not established</td>
+        <td>Multiple PERC contracts; Phantom labels Solana token unverified</td>
+      </tr>
+      <tr>
+        <td>Audit reports</td>
+        <td class="status-pending">Not evident</td>
+        <td>Independent public audits not obtained; smart-contract DD incomplete</td>
+      </tr>
+      <tr>
+        <td>Legal opinion / token classification</td>
+        <td class="status-pending">Unknown</td>
+        <td>Jurisdiction-specific legal analysis required before listing</td>
+      </tr>
+      <tr>
+        <td>Corporate structure &amp; KYC/KYB</td>
+        <td class="status-pending">Pending</td>
+        <td>Privacy policy names Perceptron Network Inc. and Ohad Dahan; unverified</td>
+      </tr>
+      <tr>
+        <td>Tokenomics &amp; vesting schedule</td>
+        <td class="status-pending">Insufficient</td>
+        <td>Role of $PERC / NFTs described; quantitative allocations not disclosed</td>
+      </tr>
+      <tr>
+        <td>Organic trading volume / liquidity</td>
+        <td class="status-pending">Extremely weak</td>
+        <td>Identifiable Solana market ~$2.5K–$2.8K liquidity</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <h4>⚠️ Regulatory Considerations</h4>
+    Stated functions include rewards, staking, ecosystem access, and potentially economic participation in an AI-agent ecosystem. Upbit should obtain a formal legal opinion addressing the token’s regulatory characterization in each jurisdiction where it would be made available, including Korea. With MiCA and similar frameworks becoming increasingly important, regulatory preparedness is a significant evaluation factor. Public information reviewed does not clearly demonstrate legal-entity documentation, beneficial-owner information, sanctions screening, AML/KYC policies, or a history of regulatory inquiries.
+  </div>
+
+  <div class="section-bar spaced">5. TEAM &amp; GOVERNANCE</div>
+  <p>Public materials reviewed emphasize product narrative and network traction more than a fully disclosed corporate and governance package. The project’s privacy policy identifies <strong>Perceptron Network Inc.</strong> and a third-party developer, <strong>Ohad Dahan</strong>, but this should be independently verified against corporate records and legal documents supplied to the exchange. Domain WHOIS ownership is privacy-protected.</p>
+
+  <div class="callout blue" style="margin-bottom:0;">
+    <h4>📋 Required Information for Listing Eligibility</h4>
+    <p>The full team structure, core contributors, and legal entity details <strong>must be provided under NDA (KYC/KYB)</strong> for official listing processing:</p>
+    <div class="bullet"><strong>Founders / executives:</strong> Legal names, roles, bios, background verification, and beneficial-owner disclosure</div>
+    <div class="bullet"><strong>Legal entity:</strong> Incorporation documents, jurisdiction, directors/officers, and authorized signatories</div>
+    <div class="bullet"><strong>Key technical owners:</strong> Protocol lead, token-contract owner, security owner, and admin-key custodians</div>
+    <div class="bullet"><strong>Governance / authorities:</strong> Mint, freeze, upgrade, pause, blacklist/whitelist, and transfer-tax controls</div>
+    <div class="bullet"><strong>Community metrics package:</strong> Independently verified nodes, users, extension installs, GitHub activity, and partner confirmations</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">6. MARKET POSITION &amp; COMPETITIVE LANDSCAPE</div>
+  <div class="subhead" style="margin-top:0;">6.1 Sector: AI / DePIN / Decentralized Data Infrastructure</div>
+  <p>Perceptron Network is positioned as an AI-agent infrastructure and decentralized data network, combining unused-bandwidth contribution with incentive and reputation mechanics. Public presence includes an established website (domain since January 2025, active TLS), documentation, a Chrome extension, a publicly announced partnership with Xenea, and a reported merger with BlockMesh.</p>
+
+  <div class="callout green">
+    <h4>✅ Competitive Advantages</h4>
+    <div class="bullet"><strong>Product thesis:</strong> Coherent AI / DePIN narrative with documented incentive mechanics</div>
+    <div class="bullet"><strong>Public presence:</strong> Website, documentation, and Chrome extension (4.6/5 from 817 ratings)</div>
+    <div class="bullet"><strong>Claimed network activity:</strong> Project-reported 700,000+ nodes and 200,000+ users post-merger</div>
+    <div class="bullet"><strong>External signals:</strong> Reported financing and announced Xenea / BlockMesh relationships</div>
+  </div>
+
+  <div class="subhead">6.2 Market Evidence Gaps</div>
+  <p>The identifiable Solana PERC market has only around $2.5K–$2.8K liquidity, ~$1.3K–$1.4K reported market capitalization, 189 holders, and 98.28% top-10 concentration, and is unlabeled/unverified on Phantom. Multiple PERC contracts exist on Solana and Base. At this depth, even modest exchange-generated trading could distort price. Independent reputation services conflict (Scam Detector 49.1/100; Gridinsoft 16/100); these scores are not proof of fraud but justify additional security review. Figures are third-party snapshots and should be rechecked on-chain.</p>
+
+  <div class="section-bar spaced">7. RISK ANALYSIS</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">Risk Category</th>
+        <th style="width:16%">Assessment</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Contract identification</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>Multiple PERC tokens/contracts; no sufficiently established canonical listing asset</td>
+      </tr>
+      <tr>
+        <td><strong>Market liquidity</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>~$2.5K–$2.8K observable Solana liquidity; no mature price-discovery market</td>
+      </tr>
+      <tr>
+        <td><strong>Holder concentration</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>Top 10 holders reportedly control 98.28% of the Phantom-indexed Solana token</td>
+      </tr>
+      <tr>
+        <td><strong>Token metrics disclosure</strong></td>
+        <td class="status-bad">High</td>
+        <td>Supply, allocation, vesting, treasury, MM, and insider unlocks not exchange-grade</td>
+      </tr>
+      <tr>
+        <td><strong>Smart-contract assurance</strong></td>
+        <td class="status-pending">High</td>
+        <td>Mint/freeze/upgrade/admin, fees, pause, and LP-lock status not verified</td>
+      </tr>
+      <tr>
+        <td><strong>Regulatory readiness</strong></td>
+        <td class="status-warn">Medium–High</td>
+        <td>Legal opinion, AML/KYC, entity, and beneficial-owner materials not clearly evidenced</td>
+      </tr>
+      <tr>
+        <td><strong>Security / reputation signals</strong></td>
+        <td class="status-warn">Mixed</td>
+        <td>WHOIS privacy; conflicting automated domain scores; no proof of fraud by itself</td>
+      </tr>
+      <tr>
+        <td><strong>Technology / product</strong></td>
+        <td class="status-ok">Low–Medium</td>
+        <td>Public product, docs, extension, and claimed network activity are comparatively stronger</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-bottom:0;"><strong>Overall Risk Assessment:</strong> HIGH / RED. This is not a conclusion that Perceptron Network is fraudulent. The project appears to have a genuine AI/DePIN thesis and meaningful claimed user/network activity. The currently observable PERC market is, however, nowhere near the liquidity, distribution, token-identification, and disclosure standard expected for a centralized-exchange listing.</p>
+</section>
+
+<section class="page">
+  <div class="section-bar">8. CONDITIONS FOR MOVING TO CONDITIONAL APPROVAL</div>
+  <p>Before Upbit can consider a <strong>conditional listing approval</strong> for PERC, the following minimum conditions should be met. These conditions align with standard Tier-1 diligence expectations covering token identity, security, legal readiness, market integrity, and operational integration.</p>
+
+  <div class="cond-block">
+    <h4>1. Canonical Token &amp; Tokenomics</h4>
+    <div class="bullet">Official chain(s), canonical contract address(es), deployment transaction, and explorer verification</div>
+    <div class="bullet">Complete schedule: max/initial/circulating supply; team/investor/ecosystem/airdrop/treasury/MM/LP allocations; vesting, cliffs, and unlock dates</div>
+    <div class="bullet">Wallet addresses for major allocations and top-holder disclosure</div>
+  </div>
+  <div class="cond-block">
+    <h4>2. Security Transparency</h4>
+    <div class="bullet">Independent smart-contract audit; mint/freeze/upgrade authority and admin-privilege analysis</div>
+    <div class="bullet">Transfer-tax, blacklist/whitelist, pause, max-wallet/tx, proxy, bridge, and wrapped-token review</div>
+    <div class="bullet">Multisig configuration, LP lock/burn evidence, incident history, and published incident-response procedures</div>
+  </div>
+  <div class="cond-block">
+    <h4>3. Legal Opinion</h4>
+    <div class="bullet">External counsel memo addressing token classification in key jurisdictions, including Korea</div>
+    <div class="bullet">Sanctions screening, AML/KYC framework, jurisdictional restrictions, and regulatory-history disclosure</div>
+    <div class="bullet">Privacy / data-processing documentation consistent with the node and bandwidth-sharing model</div>
+  </div>
+  <div class="cond-block">
+    <h4>4. Team &amp; Entity KYC/KYB</h4>
+    <div class="bullet">Verified corporate documents for Perceptron Network Inc. (or successor entity) and authorized signatories</div>
+    <div class="bullet">Founders / team KYC, beneficial-owner disclosure, and independent confirmation of named parties (including Ohad Dahan)</div>
+    <div class="bullet">Full team disclosure under NDA for listing processing</div>
+  </div>
+  <div class="cond-block">
+    <h4>5. Liquidity &amp; Market-Making Plan</h4>
+    <div class="bullet">Verified liquidity pools, LP ownership/lock evidence, historical volume, and organic-activity attestation</div>
+    <div class="bullet">Proposed liquidity budget, market-maker agreement, expected daily volume, depth, and slippage targets</div>
+    <div class="bullet">Evidence that reported trading activity is organic and not distorted by thin books or concentrated holders</div>
+  </div>
+  <div class="cond-block">
+    <h4>6. Operational Readiness</h4>
+    <div class="bullet">Official exchange integration contact; deposit/withdrawal testing; chain reorg/finality assessment</div>
+    <div class="bullet">Incident-response contact, token migration plan, and custody support for the designated chain(s)</div>
+    <div class="bullet">Independently verified ecosystem metrics (nodes, users, extension, partners) replacing project-reported figures</div>
+  </div>
+  <div class="callout amber" style="margin-bottom:0;">
+    <h4>⚠️ Smart-Contract Diligence Status: INCOMPLETE</h4>
+    The Base PERC contract indexed by Clanker, for example, shows a 1% buy fee and 1% sell fee, but that is not sufficient evidence that it is the official Perceptron token. Until the project designates a canonical contract and provides the authority, audit, LP-lock, and treasury items above, smart-contract assurance remains insufficient for listing.
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">9. PRELIMINARY RECOMMENDATION</div>
+  <p>Based on publicly available information, Perceptron Network appears to be a genuine AI/DePIN project with a coherent product thesis and claimed network activity. It lacks the token-identity, liquidity, distribution, tokenomics, and security signals that top-tier centralized exchanges typically require.</p>
+
+  <div class="callout red">
+    <h4>⛔ Recommendation: Conditional Rejection / Hold — Enhanced Due Diligence Required</h4>
+    <p style="margin-top:4px; margin-bottom:5px;"><strong>Rationale:</strong></p>
+    <div class="bullet">Canonical token contract is <strong>not sufficiently established</strong>; multiple PERC tokens/contracts exist publicly</div>
+    <div class="bullet"><strong>Extremely low observable liquidity</strong> (~$2.5K–$2.8K) and <strong>severe holder concentration</strong> (98.28% top 10)</div>
+    <div class="bullet">Insufficient public quantitative tokenomics and no demonstrated mature price-discovery market</div>
+    <div class="bullet">This is <strong>not</strong> a finding of fraud; current evidence is inadequate for a responsible CEX listing</div>
+  </div>
+
+  <div class="callout blue">
+    <h4>📋 Next Steps Before Any Reconsideration</h4>
+    <ol class="olist" style="margin-top:4px;">
+      <li>Designate and prove the <strong>official PERC contract</strong> (chain, address, deployment, explorer verification)</li>
+      <li>Submit finalized <strong>tokenomics, allocation, and vesting</strong> with wallet addresses</li>
+      <li>Provide <strong>independent security audit</strong> and admin-key / mint / freeze analysis</li>
+      <li>Provide <strong>legal opinion(s)</strong> covering token classification in target jurisdictions (including Korea)</li>
+      <li>Provide <strong>team KYB/KYC</strong> and beneficial-owner documents under NDA</li>
+      <li>Propose a <strong>liquidity provisioning plan</strong> with MM terms, depth targets, and LP-lock evidence</li>
+      <li>Reconcile supply, holders, authorities, and liquidity independently on-chain</li>
+    </ol>
+  </div>
+
+  <div class="callout amber">
+    <h4>⚠️ Status: HOLD / ENHANCED DUE DILIGENCE — DO NOT LIST AT THIS STAGE</h4>
+    <p>Upbit should not approve spot listing of PERC based on currently verifiable public information. Dialogue may continue on a watchlist basis. The first priority is to establish the canonical PERC contract and independently reconcile its supply, holders, tokenomics, authorities, and liquidity.</p>
+    <p style="margin:7px 0 8px;"><strong>Reference Number: 4D8E9FB7</strong></p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:55%">Final Scorecard</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Project / product / public presence</td>
+        <td class="status-ok">Promising / moderate-strong</td>
+      </tr>
+      <tr>
+        <td>Token utility / team transparency</td>
+        <td class="status-warn">Plausible / needs verification</td>
+      </tr>
+      <tr>
+        <td>Contract identification / tokenomics</td>
+        <td class="status-bad">Critical / weak disclosure</td>
+      </tr>
+      <tr>
+        <td>Liquidity / holder concentration / market</td>
+        <td class="status-bad">Extremely weak / critical</td>
+      </tr>
+      <tr>
+        <td>Smart-contract assurance / regulatory</td>
+        <td class="status-pending">Insufficient / unknown</td>
+      </tr>
+      <tr>
+        <td><strong>Overall listing risk / decision</strong></td>
+        <td class="status-bad">HIGH — HOLD / Enhanced DD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="closing-footer" style="margin-top:8px;">
+    <div class="rule"></div>
+    <strong>UPBIT EXCHANGE - PERCEPTRON NETWORK (PERC) TOKEN PRELIMINARY LISTING REPORT</strong><br />
+    This document contains confidential and proprietary information. Distribution is restricted to authorized personnel only.<br />
+    Report prepared by: Upbit Listings Coordination Team | Document ID: 4D8E9FB7 | Generated: August 22, 2026<br />
+    <span style="font-size:10.5px;">© 2026 Dunamu Inc. All rights reserved. Upbit is a registered trademark of Dunamu Inc.</span>
+  </div>
+</section>
+
+</body>
+</html>
