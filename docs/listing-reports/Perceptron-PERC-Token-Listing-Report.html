@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Upbit Exchange - Perceptron Network (PERC) Token Listing Report</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma, "Liberation Sans", Arial, sans-serif;
+    color: #2c3030;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 11.5mm 9.5mm;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo svg { width: 80px; height: 22px; display: block; }
+  .org-name { font-weight: 700; font-size: 14.5px; line-height: 1.2; }
+  .org-sub { font-size: 12.5px; color: #666; margin-top: 2px; }
+  .meta {
+    text-align: right;
+    font-size: 12.5px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .meta strong { display: block; font-weight: 700; color: #666; }
+
+  .title-bar {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.35px;
+    text-align: center;
+    padding: 9px 12px;
+    border-radius: 3px;
+    margin: 0 0 11px;
+  }
+  .info-grid {
+    display: flex;
+    gap: 11px;
+    margin-bottom: 12px;
+  }
+  .card {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 12px 13px;
+  }
+  .card h3 {
+    margin: 0 0 7px;
+    font-size: 15.5px;
+    color: #0057ff;
+    font-weight: 700;
+  }
+  .card .rule {
+    height: 2px;
+    background: #0057ff;
+    margin-bottom: 9px;
+  }
+  .row { font-size: 13.5px; line-height: 1.52; margin: 0 0 2px; }
+  .row .k { font-weight: 700; }
+  .row .accent { font-weight: 700; color: #0057ff; }
+  .addr {
+    font-family: Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 11.5px;
+    word-break: break-all;
+    line-height: 1.35;
+  }
+  .badge {
+    display: inline-block;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .badge.hold {
+    background: #c62828;
+  }
+
+  .section-bar {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 12px;
+    margin: 0 0 9px;
+    border-radius: 3px;
+  }
+  .section-bar.spaced { margin-top: 12px; }
+
+  p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
+  .subhead {
+    color: #0057ff;
+    font-size: 14.75px;
+    font-weight: 700;
+    margin: 9px 0 6px;
+  }
+  .bullet {
+    position: relative;
+    padding-left: 13px;
+    font-size: 13.5px;
+    line-height: 1.48;
+    margin: 0 0 4px;
+  }
+  .bullet::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4.5px;
+    height: 4.5px;
+    background: #2c3e50;
+    border-radius: 50%;
+  }
+
+  .callout {
+    border-radius: 4px;
+    padding: 12px 13px;
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .callout.green { background: #e8f5e9; border-left: 4px solid #2e7d32; }
+  .callout.amber { background: #fff3e0; border: 1.5px solid #f89800; }
+  .callout.blue { background: #f0f4ff; border-left: 4px solid #0057ff; }
+  .callout.red { background: #ffebee; border-left: 4px solid #c62828; }
+  .callout h4 { margin: 0 0 5px; font-size: 14.5px; font-weight: 700; }
+
+  .spec-box {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 11px 13px;
+    margin: 0 0 9px;
+  }
+  .spec-box h4 {
+    margin: 0 0 7px;
+    font-size: 14.5px;
+    color: #0057ff;
+    font-weight: 700;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 0 0 9px;
+  }
+  th {
+    background: #0057ff;
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+    padding: 7px 8px;
+  }
+  td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    vertical-align: top;
+    line-height: 1.38;
+  }
+  td.status-ok { background: #e8f5e9; color: #2e7d32; font-weight: 700; }
+  td.status-bad { background: #ffebee; color: #c62828; font-weight: 700; }
+  td.status-warn { background: #fff3e0; color: #ef6c00; }
+  td.status-pending { background: #ffebee; color: #c62828; font-weight: 700; }
+
+  .cond-block {
+    margin: 0 0 12px;
+    padding: 14px 12px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+  }
+  .cond-block h4 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .olist {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .olist li { margin: 0 0 4px; }
+
+  .closing-footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: #666;
+    line-height: 1.48;
+    margin-top: 14px;
+    padding-top: 10px;
+  }
+  .closing-footer .rule {
+    height: 2px;
+    background: #0057ff;
+    margin-bottom: 8px;
+  }
+
+  @media screen {
+    body { background: #e8eef5; padding: 16px 0; }
+    .page {
+      margin-bottom: 16px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="cover-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <rect x="16" y="2" width="18" height="28" rx="2" fill="#0062df"/>
+          <path d="M34 2h16c6 0 12 5 12 14s-6 14-12 14H34V2z" fill="#095987"/>
+          <text x="68" y="24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="700" fill="#095987">upbit</text>
+        </svg>
+      </div>
+      <div>
+        <div class="org-name">Korea Digital Asset Exchange</div>
+        <div class="org-sub">Dunamu Inc. | Seoul, Republic of Korea</div>
+      </div>
+    </div>
+    <div class="meta">
+      <strong>CONFIDENTIAL DOCUMENT</strong>
+      Classification: Internal Use Only<br />
+      Generated: August 24, 2026<br />
+      Document ID: 6366A1C3
+    </div>
+  </div>
+
+  <div class="title-bar">PRELIMINARY LISTING REPORT</div>
+
+  <div class="info-grid">
+    <div class="card">
+      <h3>Project Information</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Reference ID:</span> <span class="accent">6366A1C3</span></div>
+      <div class="row"><span class="k">Project Name:</span> Perceptron Network</div>
+      <div class="row"><span class="k">Token Symbol:</span> PERC</div>
+      <div class="row"><span class="k">Classification:</span> AI / DePIN / Decentralized</div>
+      <div class="row">Data Infrastructure</div>
+      <div class="row"><span class="k">Blockchain:</span> Solana (Sui via Chainlink planned)</div>
+      <div class="row"><span class="k">Launch Date:</span> 24 September 2026</div>
+      <div class="row"><span class="k">Website:</span> perceptrons.xyz</div>
+      <div class="row"><span class="k">Network Status:</span> Token launch scheduled</div>
+    </div>
+    <div class="card">
+      <h3>Listing Classification</h3>
+      <div class="rule"></div>
+      <div class="row"><span class="k">Token Type:</span> Utility token</div>
+      <div class="row"><span class="k">Contract Address:</span></div>
+      <div class="row addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</div>
+      <div class="row" style="margin-top:3px;"><span class="k">Listing Type:</span></div>
+      <div class="row" style="margin:4px 0 6px;"><span class="badge">ELIGIBLE FOR PRELIMINARY REVIEW</span></div>
+      <div class="row"><span class="k">Report Date:</span> August 24, 2026</div>
+      <div class="row"><span class="k">Assessment Status:</span> <span class="accent">Preliminary Review</span></div>
+      <div class="row"><span class="k">Prepared for:</span> Upbit Listings Committee</div>
+    </div>
+  </div>
+
+  <div class="section-bar">1. EXECUTIVE SUMMARY</div>
+  <p><strong>Perceptron Network</strong> describes itself as a decentralised data mesh for AI data acquisition and agentic web access. Its architecture combines a passive residential-node layer with an active contribution mechanism called <strong>Data Questing</strong>. Node operators contribute bandwidth, web-access infrastructure and targeted data, with <strong>$PERC</strong> used as the network’s native incentive and accounting unit. The network is not a traditional blockchain: nodes operate off-chain, while the on-chain layer accounts for contributions and distributes rewards.</p>
+  <p>The supplied technical whitepaper materially strengthens the token-economic picture. It establishes a <strong>fixed maximum supply of 86,000,000,000 PERC</strong>, with no inflationary minting beyond that cap. <strong>$PERC is scheduled to launch on Solana on 24 September 2026</strong> at mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span>, with later expansion to Sui via Chainlink. PERC has four stated functions — node rewards, quest/access funding, staking/access and governance — plus a <strong>10% funding burn</strong> and a <strong>2% claim burn</strong>. Circulating supply is <strong>not specified</strong> and remains TBD pending the 24 September 2026 launch.</p>
+
+  <div class="callout green">
+    <h4>✅ Positive Finding: Defined Token-Economic Framework</h4>
+    The whitepaper sets a fixed 86B supply cap, an activity-responsive emission model, explicit utility across rewards, payments, staking and governance, and two protocol burn mechanisms. Independent audit and legal-opinion materials have been supplied for the listing file. This is a more complete token-design package than many early-stage listings present.
+  </div>
+  <div class="callout green" style="margin-bottom:0;">
+    <h4>✅ Positive Finding: Coherent Infrastructure Thesis</h4>
+    Residential nodes, Data Questing, browser/Android clients and a stated demand model (dataset sales, agentic web access, quest funding) support a credible product review rather than a ticker-only launch. The designated Solana mint and 24 September 2026 launch date provide a concrete integration target for preliminary exchange review.
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">2. PROJECT &amp; PRODUCT OVERVIEW</div>
+  <p><strong>Perceptron Network</strong> aims to decentralise the infrastructure used to obtain real-world data for AI systems. The whitepaper describes two principal layers: a <strong>passive infrastructure layer</strong>, in which residential nodes contribute bandwidth and endpoints for structured web-data collection and agentic web access; and an <strong>active contribution layer</strong>, in which node operators participate in targeted Data Quests and provide structured data in exchange for rewards.</p>
+
+  <div class="subhead" style="margin-top:2px;">2.1 Protocol Functions</div>
+  <div class="bullet"><strong>Residential node infrastructure:</strong> Consumer-internet and mobile endpoints for web-data collection and agentic web access</div>
+  <div class="bullet"><strong>Performance scoring:</strong> Uptime, bandwidth contributed, request fulfilment, geographic/network uniqueness, and Quest quality</div>
+  <div class="bullet"><strong>Data Questing:</strong> Buyers or protocol modules specify data, quality criteria and rewards; eligible nodes fulfil the quest</div>
+  <div class="bullet"><strong>On-chain accounting:</strong> Nodes operate off-chain; Solana is used to account for contributions and distribute PERC</div>
+  <div class="bullet"><strong>Client surface:</strong> Browser extension and Android application live; iOS identified as forthcoming</div>
+
+  <div class="subhead">2.2 Vision &amp; Impact</div>
+  <p>Residential endpoints are positioned as offering a different access profile from datacentre infrastructure. Quest categories include language, image/video, conversational and proprietary datasets. tryparsely.ai coverage figures (20,000+ Discord channels; 600 million+ conversations) are project-reported and should be independently verified.</p>
+
+  <div class="callout green">
+    <h4>✅ Assessment: Coherent AI / DePIN Use Case</h4>
+    The residential-node mesh, Data Questing model and defined PERC incentive layer support a more efficient preliminary product review than a whitepaper-only token.
+  </div>
+
+  <div class="section-bar spaced">3. TOKEN DESIGN &amp; UTILITY</div>
+  <div class="spec-box">
+    <h4>Token Specifications</h4>
+    <div class="bullet"><strong>Token Name:</strong> $PERC (utility token)</div>
+    <div class="bullet"><strong>Launch Date:</strong> 24 September 2026 on Solana; Sui expansion planned via Chainlink</div>
+    <div class="bullet"><strong>Contract Address:</strong> <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span></div>
+    <div class="bullet"><strong>Maximum / fixed supply:</strong> 86,000,000,000 PERC (no inflation beyond cap)</div>
+    <div class="bullet"><strong>Circulating supply:</strong> Not specified — TBD pending the 24 September 2026 launch</div>
+    <div class="bullet"><strong>Burns:</strong> 10% of quest/access funding; 2% of claimed emission rewards (governance-adjustable)</div>
+  </div>
+
+  <div class="subhead" style="margin-top:2px;">3.1 Use Cases</div>
+  <div class="bullet"><strong>Network rewards:</strong> Compensate node operators; Rewardᵢ = mint × ΔPᵢ based on normalised Performance Score</div>
+  <div class="bullet"><strong>Quest / access funding:</strong> Data buyers and agent operators fund bounties and access payments in PERC</div>
+  <div class="bullet"><strong>Access and staking:</strong> Staked PERC may provide enhanced access to premium data products and priority quest eligibility</div>
+  <div class="bullet"><strong>Governance:</strong> Token-weighted control of emissions, burn rates, quest-verification standards and treasury allocation</div>
+
+  <div class="callout amber" style="margin-bottom:0;">
+    <h4>⚠️ Circulating Supply &amp; Allocation Gap</h4>
+    86B is the cap, not circulating supply. Obtain issuer-certified circulating supply and a complete allocation/vesting table.
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">4. DOCUMENTATION &amp; COMPLIANCE STATUS</div>
+  <p>The matrix below summarises documentation and compliance posture relevant to preliminary listing diligence, based on the supplied whitepaper and related materials.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:34%">Document / Item</th>
+        <th style="width:20%">Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Technical whitepaper / token design</td>
+        <td class="status-ok">Available</td>
+        <td>Fixed 86B cap, emissions model, utility and burns described</td>
+      </tr>
+      <tr>
+        <td>Public product / node clients</td>
+        <td class="status-ok">Available</td>
+        <td>Browser extension and Android app; iOS forthcoming</td>
+      </tr>
+      <tr>
+        <td>Canonical Solana mint / contract</td>
+        <td class="status-ok">Identified</td>
+        <td>3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn — verify on explorer at launch</td>
+      </tr>
+      <tr>
+        <td>Current circulating supply</td>
+        <td class="status-pending">Not disclosed</td>
+        <td>Pre-launch; 86B is maximum supply only</td>
+      </tr>
+      <tr>
+        <td>Allocation &amp; vesting schedule</td>
+        <td class="status-pending">Insufficient</td>
+        <td>No complete numerical table for team, investors, treasury, LP, MM, airdrops</td>
+      </tr>
+      <tr>
+        <td>Audit reports / authorities</td>
+        <td class="status-ok">Provided</td>
+        <td>Independent audit report supplied; reconfirm authorities at launch</td>
+      </tr>
+      <tr>
+        <td>Legal opinion / token classification</td>
+        <td class="status-ok">Provided</td>
+        <td>Legal opinion supplied; retain for the listing file</td>
+      </tr>
+      <tr>
+        <td>Market liquidity evidence</td>
+        <td class="status-pending">Not established</td>
+        <td>Pre-launch as of this assessment; CEX-grade depth cannot yet be demonstrated</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <h4>⚠️ Regulatory Considerations</h4>
+    Stated functions include network rewards, quest/access payments, staking and token-weighted governance. Particular attention is required for staking, governance rights, emissions, residential bandwidth contribution, web-data collection, privacy/consent and sanctions/AML exposure. A formal legal opinion, including Korea, is required before conditional approval; the supplied material alone is insufficient.
+  </div>
+
+  <div class="section-bar spaced">5. TEAM &amp; GOVERNANCE</div>
+  <p>Public materials emphasise product and token design more than a fully disclosed corporate and governance package. Governance can modify emission weights, burn rates, quest-verification standards and treasury allocation, creating post-listing parameter risk if control is concentrated.</p>
+
+  <div class="callout blue" style="margin-bottom:0;">
+    <h4>📋 Required Information for Listing Eligibility</h4>
+    <p>Team, entity and governance details <strong>must be provided (KYC/KYB)</strong> for official listing processing:</p>
+    <div class="bullet"><strong>Founders / executives:</strong> Legal names, roles, bios, background verification and beneficial-owner disclosure</div>
+    <div class="bullet"><strong>Legal entity:</strong> Incorporation documents, jurisdiction, directors/officers and authorised signatories</div>
+    <div class="bullet"><strong>Governance implementation:</strong> Quorum, voting thresholds, timelocks, emergency powers and governance-token concentration</div>
+    <div class="bullet"><strong>Authorities:</strong> Mint, freeze, upgrade, pause, blacklist/whitelist and burn-implementation controls, including multisig</div>
+    <div class="bullet"><strong>Community metrics package:</strong> Independently verified nodes, quest volume, Discord coverage, clients and commercial demand</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">6. MARKET POSITION &amp; COMPETITIVE LANDSCAPE</div>
+  <div class="subhead" style="margin-top:0;">6.1 Sector: AI / DePIN / Decentralised Data Infrastructure</div>
+  <p>Perceptron Network is positioned as infrastructure for AI data acquisition and agentic web access. Intended demand sources include commercial dataset sales, direct network access, agentic web access, Data Quest funding and premium data products. The whitepaper describes a diversified customer set spanning AI labs, model developers, hedge funds, quantitative firms, enterprises and independent researchers. These are intended economics, not independently verified revenue or transaction volumes.</p>
+
+  <div class="callout green">
+    <h4>✅ Competitive Advantages</h4>
+    <div class="bullet"><strong>Infrastructure thesis:</strong> Decentralised residential-node mesh for real-world AI data and agentic web access</div>
+    <div class="bullet"><strong>Defined token utility:</strong> Rewards, quest/access payments, staking and token-weighted governance</div>
+    <div class="bullet"><strong>Fixed supply + burns:</strong> 86B cap with no inflation beyond the cap; 10% funding burn and 2% claim burn</div>
+    <div class="bullet"><strong>Activity-linked emissions:</strong> Per-epoch minting tied to verified network work, with a supply-difficulty factor</div>
+  </div>
+
+  <div class="subhead">6.2 Market Evidence Gaps</div>
+  <p>As of this 24 August 2026 assessment, $PERC has not yet launched; the scheduled token launch is <strong>24 September 2026</strong> on Solana. The supplied whitepaper therefore cannot establish CEX-grade liquidity depth. After launch, Upbit should obtain liquidity by venue, daily spot volume, order-book depth, volatility, holder counts, top-wallet concentration, market-maker arrangements, liquidity-lock evidence, and treasury/team wallets against the designated mint.</p>
+
+  <div class="section-bar spaced">7. RISK ANALYSIS</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">Risk Category</th>
+        <th style="width:16%">Assessment</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Circulating supply</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>Pre-launch as of 24 August 2026; 86B is maximum supply only</td>
+      </tr>
+      <tr>
+        <td><strong>Allocation / vesting</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>No complete numerical table for team, investors, treasury, LP, MM or airdrops</td>
+      </tr>
+      <tr>
+        <td><strong>Contract identification</strong></td>
+        <td class="status-warn">Verify</td>
+        <td>Designated Solana mint provided — confirm on explorer at launch</td>
+      </tr>
+      <tr>
+        <td><strong>Market liquidity</strong></td>
+        <td class="status-bad">Critical</td>
+        <td>Token launch scheduled 24 September 2026; CEX-grade depth not yet demonstrable</td>
+      </tr>
+      <tr>
+        <td><strong>Holder distribution</strong></td>
+        <td class="status-pending">High</td>
+        <td>Ownership concentration requires independent on-chain verification</td>
+      </tr>
+      <tr>
+        <td><strong>Governance / emissions</strong></td>
+        <td class="status-warn">Medium–High</td>
+        <td>Governance can change burns, emission weights and treasury; oracle/work-curve risk</td>
+      </tr>
+      <tr>
+        <td><strong>Regulatory / data privacy</strong></td>
+        <td class="status-warn">Medium–High</td>
+        <td>Staking, governance, residential bandwidth and web-data collection require counsel review</td>
+      </tr>
+      <tr>
+        <td><strong>Technology / product</strong></td>
+        <td class="status-ok">Low–Medium</td>
+        <td>Clear use case and token design; multi-chain/Chainlink expansion is future integration risk</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-bottom:0;"><strong>Overall Risk Assessment:</strong> HIGH. This is not a conclusion that Perceptron Network is fraudulent. The whitepaper establishes a coherent token-economic model and a designated Solana mint. The principal unresolved issue is not the maximum supply; it is the absence of verified current circulating supply, complete allocation/vesting disclosure, mint-authority confirmation, and demonstrated post-launch market liquidity.</p>
+</section>
+
+<section class="page">
+  <div class="section-bar">8. CONDITIONS FOR MOVING TO CONDITIONAL APPROVAL</div>
+  <p>Before Upbit can consider a <strong>conditional listing approval</strong> for PERC, the following minimum conditions should be met. These conditions align with standard Tier-1 diligence expectations covering token identity, security, legal readiness, market integrity and operational integration.</p>
+
+  <div class="cond-block">
+    <h4>1. Canonical Token &amp; Tokenomics</h4>
+    <div class="bullet">Confirm the 24 September 2026 launch of designated mint 3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn; explorer verification; Sui contract when applicable</div>
+    <div class="bullet">Issuer-certified circulating supply, amount emitted, remaining emissions allocation, and 86B max-supply confirmation</div>
+    <div class="bullet">Complete allocation table, vesting/unlock schedule, treasury, team/investor wallets and community/airdrop allocations</div>
+  </div>
+  <div class="cond-block">
+    <h4>2. Security Transparency</h4>
+    <div class="bullet">Independent smart-contract audit; mint/freeze/upgrade-authority and admin-privilege confirmation</div>
+    <div class="bullet">Multisig details, burn-implementation documentation, and emergency pause/recovery controls</div>
+    <div class="bullet">Bridge / Chainlink integration documentation for the planned Sui expansion</div>
+  </div>
+  <div class="cond-block">
+    <h4>3. Legal Opinion</h4>
+    <div class="bullet">External counsel memo addressing token classification in key jurisdictions, including Korea</div>
+    <div class="bullet">AML/KYC framework, sanctions screening, regulatory-history disclosure and jurisdictional restrictions</div>
+    <div class="bullet">Data privacy and consent documentation covering residential bandwidth, web collection and user-generated data</div>
+  </div>
+  <div class="cond-block">
+    <h4>4. Team &amp; Entity KYC/KYB</h4>
+    <div class="bullet">Verified corporate documents and authorised signatories for the operating entity</div>
+    <div class="bullet">Founders / team KYC, beneficial-owner disclosure and governance-token concentration analysis</div>
+    <div class="bullet">Full team disclosure for listing processing</div>
+  </div>
+  <div class="cond-block">
+    <h4>5. Liquidity &amp; Market-Making Plan</h4>
+    <div class="bullet">Current exchange/DEX listings, verified daily volume, order-book depth and holder distribution</div>
+    <div class="bullet">Liquidity-provider arrangements, market-maker agreement and liquidity-lock evidence</div>
+    <div class="bullet">Confirmation that burns affect only protocol transactions and do not impair deposits, withdrawals or transfers</div>
+  </div>
+  <div class="cond-block" style="margin-bottom:0;">
+    <h4>6. Operational Readiness</h4>
+    <div class="bullet">Deposit/withdrawal test procedures and Solana finality / reorg characteristics</div>
+    <div class="bullet">Incident-response contact, token-migration procedure and emergency pause/recovery contacts</div>
+    <div class="bullet">Independently verified ecosystem metrics replacing project-reported Discord, quest and demand figures</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-bar">9. PRELIMINARY RECOMMENDATION</div>
+  <p>The supplied technical whitepaper materially improves the assessment of PERC’s token design. It establishes a <strong>fixed 86 billion PERC maximum supply</strong>, a defined emissions framework, explicit utility and two burn mechanisms. <strong>$PERC is scheduled to launch on Solana on 24 September 2026</strong> at mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span>. The principal unresolved issue is <strong>not</strong> the maximum supply; it is that the token has not yet launched, and circulating supply, allocation/vesting, mint authorities, security documentation, post-launch liquidity and legal materials remain unverified.</p>
+
+  <div class="callout green">
+    <h4>✅ Recommendation: Eligible for Preliminary Listing Review</h4>
+    <p style="margin-top:4px; margin-bottom:5px;"><strong>Rationale:</strong></p>
+    <div class="bullet">Whitepaper provides a <strong>fixed 86B supply cap</strong>, no inflation beyond the cap, and a defined emission/burn framework</div>
+    <div class="bullet"><strong>Token utility</strong> is substantive (rewards, quest/access funding, staking and governance) rather than purely speculative</div>
+    <div class="bullet">Product thesis (residential nodes + Data Questing) supports continued technical diligence</div>
+    <div class="bullet">Final listing remains blocked until <strong>circulating supply, allocation/vesting, mint authorities, audits, liquidity and legal opinion</strong> are issuer-verified</div>
+  </div>
+
+  <div class="callout blue">
+    <h4>📋 Next Steps for Conditional Listing</h4>
+    <ol class="olist" style="margin-top:4px;">
+      <li>Confirm the <strong>24 September 2026 Solana launch</strong> of mint <span class="addr">3p5GraZEutxVCGzBFzy5qLSevXUWwGXaCqnfuF3XdcZn</span> on explorer</li>
+      <li>Submit issuer-certified <strong>circulating supply</strong>, amount emitted and remaining emissions allocation</li>
+      <li>Submit a complete <strong>allocation and vesting schedule</strong> with wallet addresses</li>
+      <li>Provide <strong>independent security audit</strong> and mint/freeze/upgrade/burn-implementation analysis</li>
+      <li>Provide <strong>legal opinion(s)</strong> covering token classification in target jurisdictions (including Korea)</li>
+      <li>Provide <strong>team KYB/KYC</strong> documents</li>
+      <li>Propose a <strong>liquidity provisioning plan</strong> with MM terms, depth targets and LP-lock evidence</li>
+    </ol>
+  </div>
+
+  <div class="callout green">
+    <h4>✅ Status: ELIGIBLE FOR PRELIMINARY LISTING REVIEW</h4>
+    <p>Upbit can continue dialogue with the Perceptron team. Final listing should <strong>not</strong> be approved before the scheduled <strong>24 September 2026</strong> launch and issuer verification. The only confirmed supply figure is <strong>86,000,000,000 PERC maximum supply</strong>; circulating supply remains <strong>TBD</strong> pending launch.</p>
+    <p style="margin:7px 0 0;"><strong>Reference Number: 6366A1C3</strong></p>
+  </div>
+
+  <div class="closing-footer" style="margin-top:90px;">
+    <div class="rule"></div>
+    <strong>UPBIT EXCHANGE - PERCEPTRON NETWORK (PERC) TOKEN PRELIMINARY LISTING REPORT</strong><br />
+    This document contains confidential and proprietary information. Distribution is restricted to authorized personnel only.<br />
+    Report prepared by: Upbit Listings Coordination Team | Document ID: 6366A1C3 | Generated: August 24, 2026<br />
+    <span style="font-size:10.5px;">© 2026 Dunamu Inc. All rights reserved. Upbit is a registered trademark of Dunamu Inc.</span>
+  </div>
+</section>
+
+</body>
+</html>
